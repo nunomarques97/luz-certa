@@ -1,0 +1,2 @@
+# Synthetic fixtures are compared byte for byte by tests: never convert line endings.
+fixtures/synthetic/** binary
