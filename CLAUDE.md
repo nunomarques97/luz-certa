@@ -10,7 +10,7 @@ Open-source (MIT) browser tool for Portuguese households: upload the E-Redes 15-
 - Commands, from `web/`: `npm ci`, `npm start` (dev server on http://localhost:4500), `npm test`, `npm run build`, `npm run e2e` (Playwright, production build served on port 4510), `npm run evidence` (screenshots into docs/evidence/), `npm run catalogue:check` / `npm run catalogue:build`, `npm run fixtures`, `npm run design:shots`. From the root: `dotnet test jobs/omie-prices/OmiePrices.slnx`, `dotnet run --project jobs/omie-prices/src/OmiePrices -- fetch|verify --data web/public/data/omie`, `node scripts/check-docs.mjs` (`--self-test` tests the checker). CI: `.github/workflows/ci.yml`.
 
 ## Invariants
-- The repository stays PRIVATE. Making it public is the Sponsor's decision only.
+- The repository is PUBLIC (Sponsor decision, 2026-10-02). Never commit anything that must not be public.
 - Consumption data never leaves the device: no upload, no analytics carrying it, no third-party request with it. A test enforces this.
 - Never commit real consumption data. Only synthetic files under `fixtures/synthetic/` (any other `*.xlsx`/`*.xls` is git-ignored).
 - Ranking is never paid or sponsored. Affiliate links only with Sponsor approval.

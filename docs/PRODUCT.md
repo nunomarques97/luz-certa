@@ -25,4 +25,5 @@ SPONSOR GATES: making the repo public; affiliates; optional domain.
 - 2026-10-02: repository created PRIVATE. Making it public is the Sponsor's decision only.
 - 2026-10-02: no Linear; roadmap lives here, current state in docs/STATE.md.
 - 2026-10-02: affiliate links and an optional domain are Sponsor gates; none in v0.1.
+- 2026-10-02: repository made PUBLIC by the Sponsor, before the test with his real E-Redes file. Name and domain still unchecked; tariff values listed in catalogue/UNVERIFIED.md still unconfirmed.
 - 2026-10-02: no system software is installed for this project; the machine stays on Node 24.14.0. Angular 21 LTS (the newest major that supports Node 24.14) is the accepted Angular version for v0.1. Upgrading to Angular 22 needs Node 24.15+ and is deferred until the Sponsor upgrades Node.

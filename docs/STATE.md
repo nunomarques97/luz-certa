@@ -1,5 +1,5 @@
 ---
-status: v0.1 built and tested on the development PC; not hosted, not published, repository private
+status: v0.1 built and tested; CI green on GitHub; repository public since 2026-10-02; app not hosted
 sponsor_action: >-
   On your Windows PC, open PowerShell in the luz-certa\web folder, run "npm ci" and then "npm start",
   open http://localhost:4500, upload your own E-Redes 15-minute file, compare the total shown for your
@@ -56,7 +56,7 @@ All runs on 2026-10-02 on the development PC (Windows 11, Node 24.14, .NET 10).
 
 ## Sponsor gates (nothing done)
 
-- Making the repository public.
+- Making the repository public: done 2026-10-02.
 - Affiliate links.
 - A domain and any hosting. There is no deployment in v0.1; the app runs locally.
 
