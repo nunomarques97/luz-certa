@@ -1,0 +1,45 @@
+# Credentials and secrets (never commit)
+.env
+.env.*
+*.key
+*.pem
+*.jks
+*.keystore
+google-services.json
+credentials.json
+*token*
+*Token*
+*TOKEN*
+*secret*
+*Secret*
+*SECRET*
+
+# FORJA private run state
+.forja/
+
+# .NET
+bin/
+obj/
+*.user
+.vs/
+TestResults/
+
+# Node / Angular
+node_modules/
+dist/
+.angular/
+coverage/
+playwright-report/
+test-results/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Real consumption data (never commit). Only synthetic fixtures are allowed.
+*.xlsx
+*.xls
+!fixtures/synthetic/**/*.xlsx
+!fixtures/synthetic/**/*.xls
