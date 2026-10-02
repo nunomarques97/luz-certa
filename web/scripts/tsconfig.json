@@ -1,0 +1,19 @@
+/* Type-checks the Node build scripts (run directly by Node with type stripping, so only erasable syntax). */
+{
+  "compilerOptions": {
+    "strict": true,
+    "noEmit": true,
+    "target": "ES2023",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "allowImportingTsExtensions": true,
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "skipLibCheck": true,
+    "lib": ["ES2023"],
+    "types": ["node"]
+  },
+  "include": ["catalogue/**/*.mts", "design-shots.mts"]
+}

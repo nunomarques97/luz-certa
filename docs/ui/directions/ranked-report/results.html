@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luz Certa: resultados (direção A)</title>
+<link rel="stylesheet" href="theme.css">
+<style>
+  .context {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+    align-items: center;
+    padding: var(--space-4) 0;
+    font-size: var(--text-sm);
+    color: var(--ink-2);
+  }
+  .context .facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-4);
+  }
+  .context .edit {
+    margin-left: auto;
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  /* The answer */
+  .answer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: var(--space-7);
+    align-items: end;
+    padding: var(--space-6) 0 var(--space-7);
+  }
+  .answer .eyebrow {
+    font-size: var(--text-lg);
+    font-weight: 600;
+  }
+  .answer .figure {
+    display: block;
+    margin-top: var(--space-2);
+    font-size: var(--text-hero);
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+  }
+  .answer .with {
+    margin-top: var(--space-3);
+    font-size: var(--text-xl);
+    line-height: 1.3;
+  }
+  .answer .with b {
+    font-weight: 700;
+  }
+  .answer .delta {
+    margin-top: var(--space-4);
+    font-size: var(--text-lg);
+    padding: var(--space-1) var(--space-3);
+  }
+  .answer .caveat {
+    margin-top: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--ink-2);
+    max-width: 60ch;
+  }
+  .yours {
+    padding: var(--space-5);
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+  .yours dt {
+    font-size: var(--text-sm);
+    color: var(--ink-2);
+  }
+  .yours dd {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    margin-bottom: var(--space-3);
+  }
+  .yours dd:last-child {
+    margin-bottom: 0;
+  }
+  .yours dd small {
+    font-size: var(--text-sm);
+    font-weight: 400;
+    color: var(--ink-2);
+  }
+
+  /* Ranking rows */
+  .ranking {
+    list-style: none;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr) 130px 150px 300px;
+    grid-template-areas: 'rank name cost delta bar';
+    gap: var(--space-4);
+    align-items: center;
+    padding: var(--space-3) var(--space-3);
+    border-bottom: 1px solid var(--line);
+  }
+  .row.is-current {
+    background: var(--surface);
+    box-shadow: inset 4px 0 0 var(--ink);
+  }
+  .row .rank {
+    grid-area: rank;
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--ink-2);
+    text-align: right;
+  }
+  .row .who {
+    grid-area: name;
+    min-width: 0;
+  }
+  .row .who b {
+    font-size: var(--text-md);
+  }
+  .row .meta {
+    font-size: var(--text-xs);
+    color: var(--ink-2);
+  }
+  .row .cost {
+    grid-area: cost;
+    text-align: right;
+    font-size: var(--text-lg);
+    font-weight: 650;
+  }
+  .row .delta-cell {
+    grid-area: delta;
+    text-align: right;
+  }
+  .row .bar {
+    grid-area: bar;
+    position: relative;
+    height: 16px;
+  }
+  .bar::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -12px;
+    bottom: -12px;
+    border-left: 2px solid var(--ink);
+  }
+  .bar-fill {
+    position: absolute;
+    top: 2px;
+    height: 12px;
+    border-radius: 2px;
+  }
+  .bar-fill.cheaper {
+    background: var(--cheaper);
+    right: 50%;
+  }
+  .bar-fill.dearer {
+    background: var(--dearer);
+    left: 50%;
+  }
+  .scale {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr) 130px 150px 300px;
+    gap: var(--space-4);
+    padding: 0 var(--space-3) var(--space-2);
+    font-size: var(--text-xs);
+    color: var(--ink-2);
+  }
+  .scale .ends {
+    grid-column: 5;
+    display: flex;
+    justify-content: space-between;
+  }
+  .scale .head {
+    text-align: right;
+  }
+
+  /* Monthly */
+  .monthly {
+    display: grid;
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    gap: var(--space-7);
+    align-items: start;
+  }
+  .select-row label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    margin-right: var(--space-2);
+  }
+  select {
+    max-width: 100%;
+    min-height: 40px;
+    padding: 0 var(--space-3);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    background: var(--surface);
+    font: inherit;
+    color: var(--ink);
+  }
+  .legend {
+    display: flex;
+    gap: var(--space-5);
+    margin-bottom: var(--space-3);
+    font-size: var(--text-sm);
+  }
+  .legend i {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: var(--space-2);
+    vertical-align: -1px;
+  }
+  .chart text {
+    font: 12px var(--font);
+    fill: var(--ink-2);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    font-variant-numeric: tabular-nums;
+  }
+  th,
+  td {
+    padding: 6px var(--space-2);
+    border-bottom: 1px solid var(--line);
+    text-align: right;
+  }
+  th:first-child,
+  td:first-child {
+    text-align: left;
+  }
+  thead th {
+    font-weight: 600;
+    color: var(--ink-2);
+    border-bottom: 2px solid var(--ink);
+  }
+  tfoot td {
+    font-weight: 700;
+    border-top: 2px solid var(--ink);
+    border-bottom: 0;
+  }
+  td.cheaper {
+    color: var(--cheaper);
+    font-weight: 600;
+  }
+  td.dearer {
+    color: var(--dearer);
+    font-weight: 600;
+  }
+
+  /* Assumptions and sources */
+  .assumptions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-7);
+  }
+  .assumptions h3 {
+    font-size: var(--text-md);
+    margin-bottom: var(--space-3);
+  }
+  .assumptions ol,
+  .assumptions ul {
+    display: grid;
+    gap: var(--space-2);
+    padding-left: var(--space-5);
+    font-size: var(--text-sm);
+  }
+  .notes dt {
+    font-weight: 650;
+    font-size: var(--text-sm);
+    margin-top: var(--space-4);
+  }
+  .notes dd ul {
+    margin-top: var(--space-1);
+  }
+  .sources td,
+  .sources th {
+    vertical-align: top;
+  }
+  .sources th:nth-child(2),
+  .sources td:nth-child(2) {
+    text-align: left;
+  }
+  .footer {
+    padding: var(--space-6) 0 var(--space-8);
+    font-size: var(--text-sm);
+    color: var(--ink-2);
+    border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 1100px) {
+    .row,
+    .scale {
+      grid-template-columns: 32px minmax(0, 1fr) 120px 140px 200px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .context .edit {
+      margin-left: 0;
+    }
+    .answer {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+      padding: var(--space-4) 0 var(--space-6);
+    }
+    .answer .with {
+      font-size: var(--text-lg);
+    }
+    .answer .delta {
+      font-size: var(--text-md);
+      white-space: normal;
+    }
+    .yours {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 var(--space-4);
+      padding: var(--space-4);
+    }
+    .row {
+      grid-template-columns: 28px minmax(0, 1fr) auto;
+      grid-template-areas:
+        'rank name name'
+        '. cost delta'
+        '. bar bar';
+      gap: var(--space-1) var(--space-3);
+      padding: var(--space-3) var(--space-2);
+    }
+    .row .rank {
+      font-size: var(--text-md);
+      text-align: left;
+      align-self: start;
+    }
+    .row .cost {
+      text-align: left;
+    }
+    .row .bar {
+      height: 12px;
+      margin-top: var(--space-1);
+    }
+    .bar::before {
+      top: -4px;
+      bottom: -4px;
+    }
+    .bar-fill {
+      top: 2px;
+      height: 8px;
+    }
+    .scale {
+      display: none;
+    }
+    .monthly,
+    .assumptions {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+    .select-row label {
+      display: block;
+      margin-bottom: var(--space-1);
+    }
+    .select-row select {
+      width: 100%;
+    }
+    .col-kwh {
+      display: none;
+    }
+    .sources .col-verified {
+      display: none;
+    }
+  }
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="upload.html">Luz Certa</a>
+    <p class="privacy-note">
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M4 7V5a4 4 0 0 1 8 0v2h1v8H3V7h1Zm2 0h4V5a2 2 0 1 0-4 0v2Z"/></svg>
+      <span>O ficheiro não sai do seu dispositivo</span>
+    </p>
+  </div>
+</header>
+
+<main class="wrap" id="app"></main>
+
+<script src="../shared/data.js"></script>
+<script src="../shared/common.js"></script>
+<script>
+  const { esc, eur, signedEur, ranking, current, best } = LC;
+  const maxAbs = Math.max(...ranking.map((t) => Math.abs(t.diff)));
+
+  function deltaBadge(t) {
+    if (t.isCurrent) return '<span class="delta same">a sua tarifa</span>';
+    const cls = t.diff < 0 ? 'cheaper' : 'dearer';
+    const word = t.diff < 0 ? 'menos' : 'mais';
+    return `<span class="delta ${cls}"><span aria-hidden="true">${t.diff < 0 ? '▼' : '▲'}</span>${eur(Math.abs(t.diff))} ${word}</span>`;
+  }
+
+  function row(t) {
+    const width = (Math.abs(t.diff) / maxAbs) * 50;
+    const bar = t.isCurrent ? '' : `<span class="bar-fill ${t.diff < 0 ? 'cheaper' : 'dearer'}" style="width:${width}%"></span>`;
+    const caveat = t.understated ? ' <span class="tag">valor mínimo</span>' : '';
+    const meta = t.isCurrent
+      ? 'Preços que indicou, simples, 0,1658 €/kWh e 0,4520 €/dia sem IVA'
+      : `${esc(LC.kindLabel(t))}. Fonte: <a href="${esc(t.sourceUrl)}">${esc(LC.sourceHost(t))}</a>, verificada em 2 out. 2026`;
+    return `<li class="row${t.isCurrent ? ' is-current' : ''}">
+      <span class="rank num">${t.rank}</span>
+      <span class="who"><b>${esc(LC.name(t))}</b>${caveat}<br><span class="meta">${meta}</span></span>
+      <span class="cost num">${eur(t.total)}</span>
+      <span class="delta-cell">${deltaBadge(t)}</span>
+      <span class="bar" aria-hidden="true">${bar}</span>
+    </li>`;
+  }
+
+  function monthlyChart(a, b) {
+    const w = Math.max(320, document.getElementById('chart').clientWidth || 640), h = 220, pad = 28, months = a.months.length;
+    const max = Math.max(...a.months.map((m) => m.total), ...b.months.map((m) => m.total));
+    const top = Math.ceil(max / 25) * 25;
+    const slot = (w - pad) / months;
+    const y = (v) => h - 20 - (v / top) * (h - 30);
+    let bars = '';
+    a.months.forEach((m, i) => {
+      const x = pad + i * slot + slot * 0.18;
+      const bw = slot * 0.3;
+      const o = b.months[i];
+      bars += `<rect x="${x}" y="${y(m.total)}" width="${bw}" height="${h - 20 - y(m.total)}" fill="var(--ink)"/>`;
+      bars += `<rect x="${x + bw + 2}" y="${y(o.total)}" width="${bw}" height="${h - 20 - y(o.total)}" fill="var(--${b.total < a.total ? 'cheaper' : 'dearer'})"/>`;
+      bars += `<text x="${x + bw}" y="${h - 4}" text-anchor="middle">${LC.monthShort(m.month)}</text>`;
+    });
+    let grid = '';
+    for (let v = 0; v <= top; v += 25) {
+      grid += `<line x1="${pad}" x2="${w}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="${pad - 6}" y="${y(v) + 4}" text-anchor="end">${v}</text>`;
+    }
+    return `<svg class="chart" viewBox="0 0 ${w} ${h}" width="100%" role="img" aria-label="Custo mensal em euros: a sua tarifa atual e ${esc(LC.name(b))}">${grid}${bars}</svg>`;
+  }
+
+  function monthlyTable(a, b) {
+    const rows = a.months.map((m, i) => {
+      const o = b.months[i];
+      const d = o.total - m.total;
+      return `<tr><td>${LC.monthLong(m.month)}</td><td class="col-kwh">${Math.round(m.kwh)}</td><td>${eur(m.total)}</td><td>${eur(o.total)}</td><td class="${d < 0 ? 'cheaper' : 'dearer'}">${signedEur(d)}</td></tr>`;
+    }).join('');
+    return `<table>
+      <caption class="visually-hidden">Custo por mês</caption>
+      <thead><tr><th scope="col">Mês</th><th scope="col" class="col-kwh">kWh</th><th scope="col">Atual</th><th scope="col">${esc(LC.name(b).split(' ')[0])}</th><th scope="col">Diferença</th></tr></thead>
+      <tbody>${rows}</tbody>
+      <tfoot><tr><td>Total</td><td class="col-kwh">${Math.round(LC.period.totalKwh)}</td><td>${eur(a.total)}</td><td>${eur(b.total)}</td><td class="${b.total < a.total ? 'cheaper' : 'dearer'}">${signedEur(b.total - a.total)}</td></tr></tfoot>
+    </table>`;
+  }
+
+  const offers = ranking.filter((t) => !t.isCurrent);
+  const notes = offers.filter((t) => LC.offerNotes[t.id]);
+
+  document.getElementById('app').innerHTML = `
+    <div class="context">
+      <span class="facts"><span>${esc(LC.period.label)}</span><span class="num">${LC.kwh(LC.period.totalKwh)}</span><span>${LC.period.kva}</span><span>${esc(LC.period.fileName)}</span></span>
+      <span class="edit"><button class="link-button" type="button">Alterar potência ou tarifa</button><a href="upload.html">Outro ficheiro</a></span>
+    </div>
+
+    <section class="answer" aria-labelledby="answer-title">
+      <div>
+        <h1 class="eyebrow" id="answer-title">Com o seu consumo de 2025, a tarifa mais barata teria custado</h1>
+        <span class="figure">${eur(best.total)}</span>
+        <p class="with">com <b>${esc(LC.name(best))}</b>, indexada ao OMIE.</p>
+        <span class="delta cheaper"><span aria-hidden="true">▼</span>${eur(Math.abs(best.diff))} menos do que a sua tarifa atual</span>
+        <p class="caveat"><span class="tag">valor mínimo</span> Esta oferta tem custos de sistema sem valor publicado. A fatura real seria mais alta. A melhor oferta sem ressalvas é a ${esc(LC.name(ranking[1]))}: ${eur(ranking[1].total)}, ${eur(Math.abs(ranking[1].diff))} menos.</p>
+      </div>
+      <dl class="yours">
+        <div><dt>A sua tarifa atual</dt><dd>${eur(current.total)}</dd></div>
+        <div><dt>Posição entre 11 tarifas</dt><dd>${current.rank}.ª <small>3 mais baratas, 7 mais caras</small></dd></div>
+      </dl>
+    </section>
+
+    <section class="section" aria-labelledby="rank-title">
+      <div class="section-head">
+        <h2 id="rank-title">As 11 tarifas, da mais barata à mais cara</h2>
+        <p class="aside">Custo de 1 jan. a 31 dez. 2025, com IVA e taxas</p>
+      </div>
+      <div class="scale" aria-hidden="true"><span></span><span></span><span class="head">Custo</span><span class="head">Diferença</span><span class="ends"><span>mais barata</span><span>a sua</span><span>mais cara</span></span></div>
+      <ol class="ranking">${ranking.map(row).join('')}</ol>
+    </section>
+
+    <section class="section" aria-labelledby="month-title">
+      <div class="section-head">
+        <h2 id="month-title">Mês a mês</h2>
+        <p class="select-row"><label for="compare">Comparar a sua tarifa com</label><select id="compare">${offers.map((t) => `<option value="${t.id}">${esc(LC.name(t))}</option>`).join('')}</select></p>
+      </div>
+      <div class="monthly">
+        <div>
+          <p class="legend"><span><i style="background:var(--ink)"></i>A sua tarifa atual</span><span><i id="legend-swatch" style="background:var(--cheaper)"></i><span id="legend-b"></span></span></p>
+          <div id="chart"></div>
+        </div>
+        <div id="table"></div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="assume-title">
+      <div class="section-head">
+        <h2 id="assume-title">Pressupostos e fontes</h2>
+        <p class="aside">Catálogo versão 2026.10.02</p>
+      </div>
+      <div class="assumptions">
+        <div>
+          <h3>Para todas as tarifas</h3>
+          <ol>${LC.generalAssumptions.map((a) => `<li>${esc(a)}</li>`).join('')}</ol>
+        </div>
+        <div>
+          <h3>Ofertas indexadas</h3>
+          <dl class="notes">${notes.map((t) => `<dt>${esc(LC.name(t))}</dt><dd><ul>${LC.offerNotes[t.id].map((n) => `<li>${esc(n)}</li>`).join('')}</ul></dd>`).join('')}</dl>
+        </div>
+      </div>
+      <h3 style="margin:var(--space-6) 0 var(--space-3);font-size:var(--text-md)">Fonte de cada preço</h3>
+      <table class="sources">
+        <thead><tr><th scope="col">Oferta</th><th scope="col">Fonte</th><th scope="col" class="col-verified">Verificada em</th></tr></thead>
+        <tbody>${offers.map((t) => `<tr><td>${esc(LC.name(t))}</td><td><a href="${esc(t.sourceUrl)}">${esc(LC.sourceHost(t))}</a></td><td class="col-verified">2 out. 2026</td></tr>`).join('')}</tbody>
+      </table>
+    </section>
+
+    <p class="footer">Nenhuma posição desta lista é paga ou patrocinada. Os resultados são uma estimativa com os pressupostos acima e não substituem a leitura do contrato.</p>`;
+
+  function renderMonthly(id) {
+    const b = ranking.find((t) => t.id === id);
+    document.getElementById('legend-b').textContent = LC.name(b);
+    document.getElementById('legend-swatch').style.background = b.total < current.total ? 'var(--cheaper)' : 'var(--dearer)';
+    document.getElementById('chart').innerHTML = monthlyChart(current, b);
+    document.getElementById('table').innerHTML = monthlyTable(current, b);
+  }
+  const compare = document.getElementById('compare');
+  compare.addEventListener('change', () => renderMonthly(compare.value));
+  renderMonthly(best.id);
+</script>
+</body>
+</html>

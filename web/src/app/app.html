@@ -1,0 +1,19 @@
+<a class="visually-hidden skip-link" href="#conteudo">Saltar para o conteúdo</a>
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" routerLink="/">Luz Certa</a>
+    <nav aria-label="Principal">
+      <a routerLink="/fontes" routerLinkActive="is-active" ariaCurrentWhenActive="page">Fontes<span class="nav-long"> e pressupostos</span></a>
+      <p class="privacy-note">
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M4 7V5a4 4 0 0 1 8 0v2h1v8H3V7h1Zm2 0h4V5a2 2 0 1 0-4 0v2Z"/></svg>
+        <span>O ficheiro não sai do seu dispositivo</span>
+      </p>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="conteudo" tabindex="-1">
+  <router-outlet />
+</main>
+
+<div class="visually-hidden" aria-live="polite" aria-atomic="true" data-testid="status">{{ store.announcement() }}</div>

@@ -1,0 +1,94 @@
+# ERSE access tariffs (Tarifas de Acesso às Redes, TAR) for BTN up to 20.7 kVA, Portugal continental.
+# Energy in EUR/kWh, power in EUR/day, VAT excluded. Validity dates are inclusive.
+# Periods must not overlap and must cover the whole catalogue period without gaps.
+# Indexed offers add these values by consumption date; fixed offers already include them.
+periods:
+  - id: tar-2024-01
+    valid_from: "2024-01-01"
+    valid_to: "2024-05-31"
+    source_url: https://www.erse.pt/media/yntlpuwr/tarifas-se_2024.xlsx
+    page_url: https://www.erse.pt/atividade/regulacao/tarifas-e-precos-eletricidade/
+    verified_on: "2026-10-02"
+    notes:
+      - Sheet "Tarifas Acesso", tariff for BTN up to 20.7 kVA, in force from 2024-01-01.
+    energy_eur_kwh:
+      simple: 0.0365
+      bi_hourly: { out_of_empty: 0.0502, empty: 0.0092 }
+    power_eur_day:
+      - { kva: 1.15, eur_day: 0.0428 }
+      - { kva: 2.3, eur_day: 0.0856 }
+      - { kva: 3.45, eur_day: 0.1283 }
+      - { kva: 4.6, eur_day: 0.1711 }
+      - { kva: 5.75, eur_day: 0.2139 }
+      - { kva: 6.9, eur_day: 0.2567 }
+      - { kva: 10.35, eur_day: 0.385 }
+      - { kva: 13.8, eur_day: 0.5134 }
+      - { kva: 17.25, eur_day: 0.6417 }
+      - { kva: 20.7, eur_day: 0.77 }
+  - id: tar-2024-06
+    valid_from: "2024-06-01"
+    valid_to: "2024-12-31"
+    source_url: https://www.erse.pt/media/ywpbkl2y/s_tarifas_net.xlsx
+    page_url: https://www.erse.pt/atividade/regulacao/tarifas-e-precos-eletricidade/
+    verified_on: "2026-10-02"
+    notes:
+      - Exceptional mid-year tariff setting, in force from 2024-06-01 (ERSE "Tarifas e Preços para a Energia Elétrica de junho a dezembro de 2024").
+    energy_eur_kwh:
+      simple: 0.0625
+      bi_hourly: { out_of_empty: 0.086, empty: 0.0157 }
+    power_eur_day:
+      - { kva: 1.15, eur_day: 0.0531 }
+      - { kva: 2.3, eur_day: 0.1063 }
+      - { kva: 3.45, eur_day: 0.1594 }
+      - { kva: 4.6, eur_day: 0.2125 }
+      - { kva: 5.75, eur_day: 0.2657 }
+      - { kva: 6.9, eur_day: 0.3188 }
+      - { kva: 10.35, eur_day: 0.4782 }
+      - { kva: 13.8, eur_day: 0.6376 }
+      - { kva: 17.25, eur_day: 0.797 }
+      - { kva: 20.7, eur_day: 0.9563 }
+  - id: tar-2025
+    valid_from: "2025-01-01"
+    valid_to: "2025-12-31"
+    source_url: https://www.erse.pt/media/ipboeq4k/s_tarifas_net.xlsx
+    page_url: https://www.erse.pt/atividade/regulacao/tarifas-e-precos-eletricidade/
+    verified_on: "2026-10-02"
+    notes:
+      - Sheet "Tarifas Acesso", in force from 2025-01-01. No mid-year access tariff change for 2025 is listed on the ERSE page.
+    energy_eur_kwh:
+      simple: 0.06
+      bi_hourly: { out_of_empty: 0.083, empty: 0.0149 }
+    power_eur_day:
+      - { kva: 1.15, eur_day: 0.0529 }
+      - { kva: 2.3, eur_day: 0.1058 }
+      - { kva: 3.45, eur_day: 0.1587 }
+      - { kva: 4.6, eur_day: 0.2116 }
+      - { kva: 5.75, eur_day: 0.2645 }
+      - { kva: 6.9, eur_day: 0.3174 }
+      - { kva: 10.35, eur_day: 0.4761 }
+      - { kva: 13.8, eur_day: 0.6348 }
+      - { kva: 17.25, eur_day: 0.7935 }
+      - { kva: 20.7, eur_day: 0.9522 }
+  - id: tar-2026
+    valid_from: "2026-01-01"
+    valid_to: "2026-12-31"
+    source_url: https://www.erse.pt/media/wfziq5t5/s_tarifas_net.xlsx
+    page_url: https://www.erse.pt/atividade/regulacao/tarifas-e-precos-eletricidade/
+    verified_on: "2026-10-02"
+    notes:
+      - Sheet "Tarifas Acesso", in force from 2026-01-01.
+      - The ERSE update in force from 2026-10-01 (https://www.erse.pt/media/wbxljhas/s_tarifas_net_outubro-2026.xlsx) keeps these BTN access tariffs unchanged.
+    energy_eur_kwh:
+      simple: 0.0607
+      bi_hourly: { out_of_empty: 0.0835, empty: 0.0158 }
+    power_eur_day:
+      - { kva: 1.15, eur_day: 0.0573 }
+      - { kva: 2.3, eur_day: 0.1145 }
+      - { kva: 3.45, eur_day: 0.1718 }
+      - { kva: 4.6, eur_day: 0.2291 }
+      - { kva: 5.75, eur_day: 0.2864 }
+      - { kva: 6.9, eur_day: 0.3436 }
+      - { kva: 10.35, eur_day: 0.5154 }
+      - { kva: 13.8, eur_day: 0.6872 }
+      - { kva: 17.25, eur_day: 0.8591 }
+      - { kva: 20.7, eur_day: 1.0309 }

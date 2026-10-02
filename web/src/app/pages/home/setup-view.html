@@ -1,0 +1,256 @@
+<div class="step-page">
+  <div class="step-head">
+    <h1 id="setup-title">A sua potência e a sua tarifa</h1>
+    <p>Com estes dados comparamos o seu consumo real com cada tarifa da lista.</p>
+  </div>
+
+  @if (store.file(); as file) {
+    <div class="file-card">
+      <div>
+        <span class="file-name" data-testid="file-name">{{ file.name }}</span>
+        <span class="file-meta">, {{ fileSize(file.size) }}</span>
+      </div>
+      <button class="link-button" type="button" (click)="chooseAnotherFile()">
+        Escolher outro ficheiro
+      </button>
+    </div>
+  }
+
+  @if (setupError(); as error) {
+    <app-error-banner [failure]="error.failure" (chooseFile)="chooseAnotherFile()" />
+  }
+
+  @switch (catalogueStore.state().status) {
+    @case ('loading') {
+      <p class="loading-note">A carregar a lista de tarifas.</p>
+    }
+    @case ('error') {
+      <div class="error-banner" role="alert">
+        <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+          <circle cx="10" cy="10" r="9" fill="var(--danger)" />
+          <path d="M10 5v6m0 3v1" stroke="#fff" stroke-width="2" />
+        </svg>
+        <div>
+          <h2>Não foi possível carregar a lista de tarifas</h2>
+          <p>Verifique a ligação à internet e tente de novo.</p>
+          <p class="actions">
+            <button class="button secondary" type="button" (click)="catalogueStore.reload()">
+              Tentar de novo
+            </button>
+          </p>
+        </div>
+      </div>
+    }
+    @case ('ready') {
+      <form class="settings-form" novalidate (submit)="submit($event)" aria-labelledby="setup-title">
+        <div class="field">
+          <label for="kva">Potência contratada</label>
+          <span class="help" id="kva-help">Aparece na fatura, em kVA.</span>
+          <select
+            id="kva"
+            data-field="contractedKva"
+            aria-describedby="kva-help"
+            (change)="setKva($event)"
+          >
+            @for (power of powers(); track power) {
+              <option [value]="power" [selected]="power === draft().contractedKva">
+                {{ kva(power) }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <fieldset class="field">
+          <legend>A sua tarifa atual</legend>
+          <div class="choice-list">
+            <label class="choice">
+              <input
+                type="radio"
+                name="current-mode"
+                value="offer"
+                [checked]="draft().currentMode === 'offer'"
+                (change)="setMode('offer')"
+              />
+              <span>Escolher da lista</span>
+            </label>
+            <label class="choice">
+              <input
+                type="radio"
+                name="current-mode"
+                value="manual"
+                [checked]="draft().currentMode === 'manual'"
+                (change)="setMode('manual')"
+              />
+              <span>Indicar os preços da minha fatura</span>
+            </label>
+          </div>
+        </fieldset>
+
+        @if (draft().currentMode === 'offer') {
+          <div class="field">
+            <label for="offer">Tarifa atual</label>
+            <select
+              id="offer"
+              data-field="offerId"
+              [attr.aria-invalid]="errors().offerId ? 'true' : null"
+              [attr.aria-describedby]="errors().offerId ? 'offer-error' : 'offer-kind'"
+              (change)="setOffer($event)"
+            >
+              <option value="" [selected]="draft().offerId === ''">Escolha a sua tarifa</option>
+              @for (offer of offers(); track offer.id) {
+                <option [value]="offer.id" [selected]="offer.id === draft().offerId">
+                  {{ offer.label }}
+                </option>
+              }
+            </select>
+            @if (errors().offerId; as message) {
+              <span class="field-error" id="offer-error">{{ message }}</span>
+            } @else {
+              <span class="help" id="offer-kind">{{ selectedOffer()?.kind ?? 'Fixa ou indexada, simples ou bi-horária: está tudo na lista.' }}</span>
+            }
+          </div>
+        } @else {
+          <div class="manual">
+            <fieldset class="field">
+              <legend>Tipo de tarifa</legend>
+              <div class="choice-list">
+                <label class="choice">
+                  <input
+                    type="radio"
+                    name="tariff-type"
+                    value="simple"
+                    [checked]="draft().manual.tariffType === 'simple'"
+                    (change)="setTariffType('simple')"
+                  />
+                  <span>Simples (o mesmo preço a qualquer hora)</span>
+                </label>
+                <label class="choice">
+                  <input
+                    type="radio"
+                    name="tariff-type"
+                    value="bi_hourly"
+                    [checked]="draft().manual.tariffType === 'bi_hourly'"
+                    (change)="setTariffType('bi_hourly')"
+                  />
+                  <span>Bi-horária (vazio e fora de vazio)</span>
+                </label>
+              </div>
+            </fieldset>
+
+            @if (draft().manual.tariffType === 'bi_hourly') {
+              <div class="field">
+                <label for="cycle">Ciclo</label>
+                <select id="cycle" (change)="setCycle($event)">
+                  <option value="daily" [selected]="draft().manual.cycle === 'daily'">Ciclo diário</option>
+                  <option value="weekly" [selected]="draft().manual.cycle === 'weekly'">Ciclo semanal</option>
+                </select>
+              </div>
+            }
+
+            <p class="help">Preços sem IVA, como aparecem no tarifário do seu comercializador.</p>
+            <div class="price-grid">
+              @if (draft().manual.tariffType === 'simple') {
+                <div class="field">
+                  <label for="energy-simple">Energia</label>
+                  <span>
+                    <input
+                      id="energy-simple"
+                      type="text"
+                      inputmode="decimal"
+                      autocomplete="off"
+                      data-field="energySimple"
+                      [value]="draft().manual.energySimple"
+                      [attr.aria-invalid]="errors().energySimple ? 'true' : null"
+                      [attr.aria-describedby]="errors().energySimple ? 'energy-simple-error' : 'unit-kwh'"
+                      (input)="setPrice('energySimple', $event)"
+                    /><span class="unit" id="unit-kwh">€/kWh</span>
+                  </span>
+                  @if (errors().energySimple; as message) {
+                    <span class="field-error" id="energy-simple-error">{{ message }}</span>
+                  }
+                </div>
+              } @else {
+                <div class="field">
+                  <label for="energy-out">Energia fora de vazio</label>
+                  <span>
+                    <input
+                      id="energy-out"
+                      type="text"
+                      inputmode="decimal"
+                      autocomplete="off"
+                      data-field="energyOutOfEmpty"
+                      [value]="draft().manual.energyOutOfEmpty"
+                      [attr.aria-invalid]="errors().energyOutOfEmpty ? 'true' : null"
+                      [attr.aria-describedby]="errors().energyOutOfEmpty ? 'energy-out-error' : 'unit-kwh-out'"
+                      (input)="setPrice('energyOutOfEmpty', $event)"
+                    /><span class="unit" id="unit-kwh-out">€/kWh</span>
+                  </span>
+                  @if (errors().energyOutOfEmpty; as message) {
+                    <span class="field-error" id="energy-out-error">{{ message }}</span>
+                  }
+                </div>
+                <div class="field">
+                  <label for="energy-empty">Energia em vazio</label>
+                  <span>
+                    <input
+                      id="energy-empty"
+                      type="text"
+                      inputmode="decimal"
+                      autocomplete="off"
+                      data-field="energyEmpty"
+                      [value]="draft().manual.energyEmpty"
+                      [attr.aria-invalid]="errors().energyEmpty ? 'true' : null"
+                      [attr.aria-describedby]="errors().energyEmpty ? 'energy-empty-error' : 'unit-kwh-empty'"
+                      (input)="setPrice('energyEmpty', $event)"
+                    /><span class="unit" id="unit-kwh-empty">€/kWh</span>
+                  </span>
+                  @if (errors().energyEmpty; as message) {
+                    <span class="field-error" id="energy-empty-error">{{ message }}</span>
+                  }
+                </div>
+              }
+              <div class="field">
+                <label for="power">Potência</label>
+                <span>
+                  <input
+                    id="power"
+                    type="text"
+                    inputmode="decimal"
+                    autocomplete="off"
+                    data-field="power"
+                    [value]="draft().manual.power"
+                    [attr.aria-invalid]="errors().power ? 'true' : null"
+                    [attr.aria-describedby]="errors().power ? 'power-error' : 'unit-day'"
+                    (input)="setPrice('power', $event)"
+                  /><span class="unit" id="unit-day">€/dia</span>
+                </span>
+                @if (errors().power; as message) {
+                  <span class="field-error" id="power-error">{{ message }}</span>
+                }
+              </div>
+            </div>
+          </div>
+        }
+
+        <div class="field">
+          <label class="choice">
+            <input
+              type="checkbox"
+              [checked]="draft().largeFamily"
+              aria-describedby="family-help"
+              (change)="setLargeFamily($event)"
+            />
+            <span>Família numerosa (cinco ou mais pessoas)</span>
+          </label>
+          <span class="help" id="family-help">
+            Aumenta a energia com IVA reduzido, como na fatura.
+          </span>
+        </div>
+
+        <div class="form-actions">
+          <button class="button" type="submit">Calcular</button>
+        </div>
+      </form>
+    }
+  }
+</div>

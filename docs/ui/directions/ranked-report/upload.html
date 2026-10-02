@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luz Certa: carregar o ficheiro (direção A)</title>
+<link rel="stylesheet" href="theme.css">
+<style>
+  .upload-page {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--space-8);
+    padding: var(--space-8) 0 var(--space-7);
+  }
+  .question {
+    font-size: var(--text-2xl);
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    max-width: 18ch;
+  }
+  .lead {
+    margin-top: var(--space-4);
+    font-size: var(--text-lg);
+    color: var(--ink-2);
+    max-width: 52ch;
+  }
+  .upload-block {
+    display: grid;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+  .privacy {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-3);
+    align-items: start;
+    font-size: var(--text-sm);
+    color: var(--ink-2);
+  }
+  .privacy strong {
+    display: block;
+    color: var(--ink);
+    font-size: var(--text-md);
+  }
+  .guide {
+    align-self: start;
+    padding: var(--space-6);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+  .guide h2 {
+    font-size: var(--text-lg);
+    font-weight: 650;
+  }
+  .guide ol {
+    display: grid;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+    padding: 0;
+    list-style: none;
+    counter-reset: step;
+  }
+  .guide li {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: var(--space-3);
+    counter-increment: step;
+  }
+  .guide li::before {
+    content: counter(step);
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--surface);
+    font-size: var(--text-sm);
+    font-weight: 700;
+  }
+  .guide .small {
+    margin-top: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line);
+    font-size: var(--text-sm);
+    color: var(--ink-2);
+  }
+  .outcome {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+    padding: var(--space-6) 0 var(--space-8);
+    border-top: 1px solid var(--line);
+  }
+  .outcome h3 {
+    font-size: var(--text-md);
+  }
+  .outcome p {
+    font-size: var(--text-sm);
+    color: var(--ink-2);
+  }
+  @media (max-width: 720px) {
+    .upload-page {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+      padding: var(--space-6) 0;
+    }
+    .upload-zone {
+      padding: var(--space-6) var(--space-4);
+    }
+    .upload-zone .drag-text {
+      display: none;
+    }
+    .guide {
+      padding: var(--space-5);
+    }
+    .outcome {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+      padding-bottom: var(--space-7);
+    }
+  }
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="upload.html">Luz Certa</a>
+    <p class="privacy-note">
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M4 7V5a4 4 0 0 1 8 0v2h1v8H3V7h1Zm2 0h4V5a2 2 0 1 0-4 0v2Z"/></svg>
+      <span>O ficheiro não sai do seu dispositivo</span>
+    </p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="upload-page">
+    <section aria-labelledby="question">
+      <h1 class="question" id="question">Quanto teria pago com outra tarifa de eletricidade?</h1>
+      <p class="lead">Carregue o ficheiro de consumos de 15 em 15 minutos da E-Redes. Mostramos quanto teria pago com cada uma de 10 ofertas, fixas e indexadas ao OMIE, comparado com a sua tarifa atual, no seu consumo real.</p>
+
+      <div class="upload-block">
+        <div id="error-slot"></div>
+        <div class="upload-zone" id="zone">
+          <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M11 4h13l8 8v24H11zM24 4v8h8M21 30V18m-5 5 5-5 5 5"/></svg>
+          <strong class="drag-text">Arraste o ficheiro para aqui</strong>
+          <span class="hint drag-text">ou</span>
+          <label class="button" for="file">Escolher ficheiro</label>
+          <input class="visually-hidden" type="file" id="file" accept=".xlsx">
+          <span class="hint">Ficheiro .xlsx exportado pela E-Redes, até 25 MB</span>
+        </div>
+        <p class="privacy">
+          <svg width="20" height="20" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M4 7V5a4 4 0 0 1 8 0v2h1v8H3V7h1Zm2 0h4V5a2 2 0 1 0-4 0v2Z"/></svg>
+          <span><strong>O ficheiro não sai do seu dispositivo.</strong>A leitura e as contas são feitas neste navegador. Nada do seu consumo é enviado para nenhum servidor.</span>
+        </p>
+      </div>
+    </section>
+
+    <aside class="guide" aria-labelledby="guide-title">
+      <h2 id="guide-title">Como obter o ficheiro</h2>
+      <ol id="guide"></ol>
+      <p class="small">Os valores do ficheiro são potência média em kW em cada quarto de hora. A energia de cada quarto de hora é esse valor a dividir por 4.</p>
+    </aside>
+  </div>
+
+  <section class="outcome" aria-label="O que vai ver">
+    <div><h3>Quanto teria pago</h3><p>O custo de cada tarifa no mesmo período do ficheiro, com IVA e taxas.</p></div>
+    <div><h3>A diferença para a sua</h3><p>Quanto pouparia ou pagaria a mais em relação à tarifa que tem hoje.</p></div>
+    <div><h3>Tudo à vista</h3><p>Mês a mês, com cada pressuposto e a fonte de cada preço.</p></div>
+  </section>
+</main>
+
+<script src="../shared/data.js"></script>
+<script src="../shared/common.js"></script>
+<script>
+  document.getElementById('guide').innerHTML = LC.guide.map((step) => `<li><span>${LC.esc(step)}</span></li>`).join('');
+  if (new URLSearchParams(location.search).get('estado') === 'erro') {
+    document.getElementById('error-slot').innerHTML = `
+      <div class="error-banner" role="alert">
+        <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="var(--danger)"/><path d="M10 5v6m0 3v1" stroke="#fff" stroke-width="2"/></svg>
+        <div>
+          <h2>Não conseguimos ler este ficheiro</h2>
+          <p>Falta a coluna "Hora". Exporte de novo os consumos de 15 em 15 minutos no Balcão Digital e carregue o ficheiro sem o alterar.</p>
+          <p class="actions"><label class="button secondary" for="file">Escolher outro ficheiro</label></p>
+        </div>
+      </div>`;
+  }
+</script>
+</body>
+</html>

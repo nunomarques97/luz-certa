@@ -1,0 +1,130 @@
+/* Direction B, load curve first. A night palette so the consumption heatmap carries the page. */
+:root {
+  --bg: #0d1624;
+  --surface: #14213a;
+  --surface-2: #1b2b48;
+  --text: #e9eef5;
+  --muted: #a6b4c8;
+  --line: #2a3b5c;
+  --heat-0: #17243b;
+  --heat-1: #22487a;
+  --heat-2: #2f7fa3;
+  --heat-3: #e1a53c;
+  --heat-4: #ffe18c;
+  --cheap: #57d2a0;
+  --dear: #ff8e6e;
+  --empty-band: #57d2a0;
+  --danger: #ff8e8e;
+  --focus: #ffd34d;
+
+  --font: 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
+  --font-figure: Bahnschrift, 'DIN Alternate', 'Segoe UI', system-ui, sans-serif;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 56px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  background: var(--bg);
+  color: var(--text);
+  font: 400 16px / 1.5 var(--font);
+}
+body {
+  margin: 0;
+}
+h1,
+h2,
+h3,
+p,
+ol,
+ul,
+dl,
+dd {
+  margin: 0;
+}
+a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+.wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+.figure {
+  font-family: var(--font-figure);
+  font-variant-numeric: tabular-nums;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: 56px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.top .brand {
+  color: var(--text);
+  font: 700 18px var(--font-figure);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--space-5);
+  border: 0;
+  border-radius: 999px;
+  background: var(--heat-4);
+  color: #10192a;
+  font: 700 16px var(--font);
+  cursor: pointer;
+}
+.legend-scale {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 13px;
+  color: var(--muted);
+}
+.legend-scale i {
+  width: 120px;
+  height: 10px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--heat-0), var(--heat-1), var(--heat-2), var(--heat-3), var(--heat-4));
+}
+@media (max-width: 720px) {
+  .wrap {
+    padding: 0 var(--space-4);
+  }
+  .top .note {
+    font-size: 12px;
+    text-align: right;
+  }
+}

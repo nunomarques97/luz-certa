@@ -1,0 +1,20 @@
+# Luz Certa tariff catalogue (manifest).
+# Bump catalogue_version (YYYY.MM.DD of the last verification) whenever any value changes.
+# Bump schema_version only when the structure changes; the validator rejects unknown versions.
+schema_version: 1
+catalogue_version: "2026.10.02"
+currency: EUR
+# Every price in this catalogue excludes VAT (IVA). VAT and other taxes are in taxes.yaml.
+prices_include_vat: false
+scope:
+  market: Portugal continental
+  voltage_level: BTN (contracted power up to 20.7 kVA)
+  catalogue_period:
+    from: "2024-01-01"
+    to: "2026-12-31"
+# Offers are listed alphabetically by id. The order carries no meaning and is never a ranking.
+sections:
+  cycles: cycles.yaml
+  access_tariffs: access-tariffs.yaml
+  taxes: taxes.yaml
+  offers: offers.yaml

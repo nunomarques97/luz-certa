@@ -1,0 +1,43 @@
+name: OMIE prices
+
+on:
+  schedule:
+    # Daily after the OMIE day-ahead results are published (about 13:00 CET).
+    - cron: '15 13 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: omie-prices
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Fetch missing days
+        run: dotnet run --project jobs/omie-prices/src/OmiePrices -c Release -- fetch --data web/public/data/omie
+
+      - name: Verify data
+        run: dotnet run --project jobs/omie-prices/src/OmiePrices -c Release --no-build -- verify --data web/public/data/omie
+
+      - name: Commit changed price files
+        run: |
+          git add -- web/public/data/omie/
+          if git diff --cached --quiet; then
+            echo "No new OMIE prices."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update OMIE prices to $(jq -r .last_day web/public/data/omie/index.json)"
+          git push

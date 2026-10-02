@@ -1,0 +1,229 @@
+@if (model(); as m) {
+  <div class="context" data-testid="context">
+    <span class="facts">
+      <span>{{ m.periodLabel }}</span>
+      <span class="num">{{ kwh(m.totalKwh) }}</span>
+      <span>{{ kva(m.contractedKva) }}</span>
+      <span>{{ result()?.submission?.file?.name }}</span>
+    </span>
+    <span class="edit">
+      <button class="link-button" type="button" (click)="store.editSettings()">
+        Alterar potência ou tarifa
+      </button>
+      <button class="link-button" type="button" (click)="store.startOver()">Outro ficheiro</button>
+    </span>
+  </div>
+  @if (m.notices.length > 0) {
+    <p class="context-notice" data-testid="data-notice">
+      <span aria-hidden="true">!</span>
+      <span>
+        {{ m.notices.length === 1 ? 'Há um aviso sobre os dados' : 'Há ' + m.notices.length + ' avisos sobre os dados' }}:
+        {{ m.notices[0] }}
+        <a href="#pressupostos">Ver avisos e pressupostos</a>
+      </span>
+    </p>
+  }
+
+  <section class="answer" aria-labelledby="answer-title" data-testid="answer">
+    <div>
+      @if (!m.best.isCurrent) {
+        <h1 class="eyebrow" id="answer-title">
+          Com o seu consumo de {{ m.annualised ? m.periodLabel : m.years }}, a tarifa mais barata teria
+          custado
+        </h1>
+        <span class="figure" data-testid="best-total">{{ eur(m.best.total) }}</span>
+        @if (perYear(m.best.annualised); as yearly) {
+          <p class="per-year">{{ yearly }}</p>
+        }
+        <p class="with">com <b>{{ m.best.name }}</b>, {{ pricingWord(m.best) }}.</p>
+        <span class="delta" [class]="m.best.delta" data-testid="best-delta">
+          @if (m.best.delta === 'cheaper') {
+            <span aria-hidden="true">▼</span>{{ eur(-m.best.difference) }} menos do que a sua tarifa atual
+          } @else {
+            Igual à sua tarifa atual
+          }
+        </span>
+        @if (m.best.understated) {
+          <p class="caveat">
+            <span class="tag">valor mínimo</span>
+            Esta oferta deixa de fora custos sem valor publicado. A fatura real seria mais alta.
+            @if (m.cheapestFirm; as firm) {
+              @if (firm.isCurrent) {
+                Sem ressalvas, a sua tarifa atual é a mais barata.
+              } @else {
+                A melhor oferta sem ressalvas é {{ firm.name }}: {{ eur(firm.total) }},
+                {{ firm.delta === 'cheaper' ? eur(-firm.difference) + ' menos' : firm.delta === 'dearer' ? eur(firm.difference) + ' mais' : 'o mesmo valor' }}.
+              }
+            }
+          </p>
+        }
+      } @else {
+        <h1 class="eyebrow" id="answer-title">
+          Com o seu consumo de {{ m.annualised ? m.periodLabel : m.years }}, a sua tarifa atual já é a
+          mais barata
+        </h1>
+        <span class="figure" data-testid="best-total">{{ eur(m.best.total) }}</span>
+        @if (perYear(m.best.annualised); as yearly) {
+          <p class="per-year">{{ yearly }}</p>
+        }
+        <p class="with">Nenhuma das outras {{ m.tariffCount - 1 }} tarifas teria custado menos.</p>
+        @if (runnerUp(); as next) {
+          <span class="delta dearer" data-testid="best-delta">
+            <span aria-hidden="true">▲</span>A seguinte, {{ next.name }}, custaria
+            {{ eur(next.difference) }} mais
+          </span>
+        }
+      }
+    </div>
+    <dl class="yours" data-testid="current-card">
+      <div>
+        <dt>A sua tarifa atual</dt>
+        <dd>
+          {{ eur(m.current.total) }}
+          @if (perYear(m.current.annualised); as yearly) {
+            <small>{{ yearly }}</small>
+          }
+        </dd>
+      </div>
+      <div>
+        <dt>Posição entre {{ m.tariffCount }} tarifas</dt>
+        <dd>
+          {{ m.current.rank }}.ª
+          <small>{{ m.cheaperCount }} mais baratas, {{ m.dearerCount }} mais caras</small>
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="section" aria-labelledby="rank-title">
+    <div class="section-head">
+      <h2 id="rank-title">As {{ m.tariffCount }} tarifas, da mais barata à mais cara</h2>
+      <p class="aside">
+        Custo de {{ m.periodLabel }}, com IVA e taxas{{ m.annualised ? ', e o valor por ano' : '' }}
+      </p>
+    </div>
+    <div class="scale" aria-hidden="true">
+      <span></span><span></span><span class="head">Custo</span><span class="head">Diferença</span>
+      <span class="ends"><span>mais barata</span><span>a sua</span><span>mais cara</span></span>
+    </div>
+    <ol class="ranking" data-testid="ranking">
+      @for (row of m.rows; track row.id) {
+        <li class="row" [class.is-current]="row.isCurrent" [attr.data-offer]="row.id">
+          <span class="rank num">{{ row.rank }}</span>
+          <span class="who">
+            <b>{{ row.name }}</b>
+            @if (row.understated) {
+              <span class="tag">valor mínimo</span>
+            }
+            <br />
+            <span class="meta">
+              {{ row.kind }}.
+              @if (row.sourceUrl) {
+                Fonte:
+                <a [href]="row.sourceUrl" target="_blank" rel="noopener noreferrer">{{ row.sourceLabel }}<span class="visually-hidden"> (abre noutro separador)</span></a>,
+                verificada em {{ row.verifiedOn }}
+              }
+            </span>
+          </span>
+          <span class="cost num">
+            {{ eur(row.total) }}
+            @if (perYear(row.annualised); as yearly) {
+              <small>{{ yearly }}</small>
+            }
+          </span>
+          <span class="delta-cell">
+            <span class="delta" [class]="row.isCurrent ? 'same' : row.delta" data-testid="delta">
+              @if (!row.isCurrent && row.delta !== 'same') {
+                <span aria-hidden="true">{{ row.delta === 'cheaper' ? '▼' : '▲' }}</span>
+              }
+              {{ deltaText(row) }}
+            </span>
+          </span>
+          <span class="bar" aria-hidden="true">
+            @if (!row.isCurrent && row.delta !== 'same') {
+              <span class="bar-fill" [class]="row.delta" [style.width.%]="row.barPercent"></span>
+            }
+          </span>
+        </li>
+      }
+    </ol>
+  </section>
+
+  @if (result(); as r) {
+    <app-monthly-section [ranking]="r.analysis.ranking" [totalKwh]="m.totalKwh" />
+  }
+
+  <section class="section" aria-labelledby="assume-title" id="pressupostos" tabindex="-1">
+    <div class="section-head">
+      <h2 id="assume-title">Pressupostos e fontes</h2>
+      <p class="aside">Catálogo versão {{ m.catalogueVersion }}</p>
+    </div>
+    @if (m.notices.length > 0) {
+      <h3 class="sub-title" style="margin-top: 0">Avisos sobre os dados</h3>
+      <ul class="plain-list notice-list" data-testid="notices">
+        @for (notice of m.notices; track $index) {
+          <li>{{ notice }}</li>
+        }
+      </ul>
+    }
+    <div class="assumptions">
+      <div>
+        <h3>Para todas as tarifas</h3>
+        <ol data-testid="assumptions">
+          @for (text of m.general; track $index) {
+            <li>{{ text }}</li>
+          }
+        </ol>
+      </div>
+      <div>
+        <h3>Notas por oferta</h3>
+        @if (m.offerNotes.length > 0) {
+          <dl class="notes">
+            @for (offer of m.offerNotes; track offer.id) {
+              <dt>{{ offer.name }}</dt>
+              <dd>
+                <ul>
+                  @for (note of offer.notes; track $index) {
+                    <li>{{ note }}</li>
+                  }
+                </ul>
+              </dd>
+            }
+          </dl>
+        } @else {
+          <p class="aside">Nenhuma oferta tem notas próprias.</p>
+        }
+      </div>
+    </div>
+    <h3 class="sub-title">Fonte de cada preço</h3>
+    <table class="sources" data-testid="sources">
+      <thead>
+        <tr>
+          <th scope="col">Oferta</th>
+          <th scope="col">Fonte</th>
+          <th scope="col" class="col-verified">Verificada em</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (source of m.sources; track $index) {
+          <tr>
+            <td>{{ source.name }}</td>
+            <td>
+              @if (source.url) {
+                <a [href]="source.url" target="_blank" rel="noopener noreferrer">{{ source.label }}<span class="visually-hidden"> (abre noutro separador)</span></a>
+              } @else {
+                {{ source.label }}
+              }
+            </td>
+            <td class="col-verified">{{ source.verifiedOn }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <p class="aside" style="margin-top: var(--space-4)">
+      <a routerLink="/fontes">Ver todas as fontes e a forma de cálculo</a>
+    </p>
+  </section>
+
+  <p class="footer" data-testid="not-sponsored">{{ notSponsored }}</p>
+}

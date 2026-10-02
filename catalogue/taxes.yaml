@@ -1,0 +1,64 @@
+# Taxes and fees on a BTN household electricity bill, Portugal continental.
+# Rates are fractions (0.23 = 23 %). Fee amounts exclude VAT; vat_rate is the VAT applied to the fee.
+vat:
+  standard_rate: 0.23
+  source_url: https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/codigos_tributarios/civa_rep/Pages/iva18.aspx
+  legal_reference: Código do IVA, artigo 18.º, n.º 1 (6 % for Lista I, 13 % for Lista II, 23 % otherwise)
+  verified_on: "2026-10-02"
+  unverified: [U7]
+  rules:
+    - id: vat-reduced-tar-power
+      description: Reduced rate on the fixed component of the access tariffs (TAR power term) when contracted power is at most 3.45 kVA.
+      applies_to: tar_power_term
+      rate: 0.06
+      max_contracted_kva: 3.45
+      valid_from: "2024-01-01"
+      valid_to: null
+      legal_reference: Código do IVA, Lista I, verba 2.33 (added by Decreto-Lei n.º 60/2019)
+      source_url: https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/codigos_tributarios/civa_rep/Pages/c-iva-listas.aspx
+      verified_on: "2026-10-02"
+      unverified: [U12]
+    - id: vat-reduced-energy-2025
+      description: Reduced rate on consumed energy (fixed components excluded) for contracted power up to 6.9 kVA, on the part not exceeding 200 kWh per 30 days (300 kWh for large families of five or more people).
+      applies_to: energy
+      rate: 0.06
+      max_contracted_kva: 6.9
+      kwh_per_30_days: 200
+      kwh_per_30_days_large_family: 300
+      valid_from: "2025-01-01"
+      valid_to: null
+      legal_reference: Código do IVA, Lista I, verba 2.38 (wording of Lei n.º 38/2024, in force from 2025-01-01)
+      source_url: https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/codigos_tributarios/civa_rep/Pages/c-iva-listas.aspx
+      verified_on: "2026-10-02"
+      notes:
+        - The rules for multi-rate tariffs and for billing periods other than 30 days are set by a government order (portaria) that is not part of this catalogue. Pro rata by days is an assumption.
+fees:
+  - id: iec
+    name: Imposto Especial de Consumo de eletricidade (IEC)
+    basis: per_kwh
+    amount_eur: 0.001
+    vat_rate: 0.23
+    source_url: https://www.coopernico.org/tarifarios
+    vat_source_url: https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/codigos_tributarios/civa_rep/Pages/iva18.aspx
+    verified_on: "2026-10-02"
+    unverified: [U8]
+  - id: dgeg
+    name: Taxa de exploração DGEG
+    basis: per_month
+    amount_eur: 0.07
+    vat_rate: 0.23
+    source_url: https://www.coopernico.org/tarifarios
+    vat_source_url: https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/codigos_tributarios/civa_rep/Pages/iva18.aspx
+    verified_on: "2026-10-02"
+    unverified: [U8]
+  - id: audiovisual_contribution
+    name: Contribuição para o audiovisual (CAV)
+    basis: per_day
+    amount_eur: 0.09363
+    vat_rate: 0.06
+    source_url: https://www.coopernico.org/tarifarios
+    vat_source_url: https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/codigos_tributarios/civa_rep/Pages/c-iva-listas.aspx
+    verified_on: "2026-10-02"
+    unverified: [U8]
+    notes:
+      - VAT at 6 % per Código do IVA, Lista I, verba 2.2.

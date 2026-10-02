@@ -1,0 +1,117 @@
+/* Direction C, bill ledger. Paper, rules and aligned figures: every offer reads as an itemised bill. */
+:root {
+  --paper: #f3eee2;
+  --sheet: #fffdf7;
+  --ink: #1f1b16;
+  --ink-2: #5a5247;
+  --rule: #c9bfae;
+  --rule-strong: #1f1b16;
+  --save: #1d6b3a;
+  --cost: #9b2f1c;
+  --mark: #fff1b8;
+  --danger: #9b1c2a;
+  --focus: #2457c5;
+
+  --font-text: Cambria, Georgia, 'Times New Roman', serif;
+  --font-ui: 'Segoe UI', system-ui, sans-serif;
+  --font-figure: 'Cascadia Mono', Consolas, 'SF Mono', Menlo, monospace;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 56px;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 16px / 1.5 var(--font-ui);
+}
+body {
+  margin: 0;
+}
+h1,
+h2,
+h3,
+p,
+ol,
+ul,
+dl,
+dd {
+  margin: 0;
+}
+a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+.fig {
+  font-family: var(--font-figure);
+  font-variant-numeric: tabular-nums;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: 56px;
+  border-bottom: 3px double var(--rule-strong);
+  font-size: 14px;
+}
+.bar .brand {
+  font: 700 22px var(--font-text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.sheet {
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  box-shadow: 0 1px 0 var(--rule), 0 8px 24px rgba(60, 45, 20, 0.08);
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--space-5);
+  border: 2px solid var(--ink);
+  border-radius: 2px;
+  background: var(--ink);
+  color: var(--sheet);
+  font: 600 16px var(--font-ui);
+  cursor: pointer;
+}
+.serif {
+  font-family: var(--font-text);
+}
+@media (max-width: 720px) {
+  .wrap {
+    padding: 0 var(--space-4);
+  }
+  .bar .note {
+    font-size: 12px;
+    text-align: right;
+  }
+}

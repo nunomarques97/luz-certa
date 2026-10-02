@@ -1,0 +1,10 @@
+/* Compiles the engine Web Worker with WebWorker types instead of DOM types. */
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/worker",
+    "lib": ["ES2022", "WebWorker"],
+    "types": []
+  },
+  "include": ["src/**/*.worker.ts"]
+}

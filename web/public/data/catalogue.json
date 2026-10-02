@@ -1,0 +1,1605 @@
+{
+  "schema_version": 1,
+  "catalogue_version": "2026.10.02",
+  "currency": "EUR",
+  "prices_include_vat": false,
+  "scope": {
+    "market": "Portugal continental",
+    "voltage_level": "BTN (contracted power up to 20.7 kVA)",
+    "catalogue_period": {
+      "from": "2024-01-01",
+      "to": "2026-12-31"
+    }
+  },
+  "cycles": {
+    "source_url": "https://www.erse.pt/media/rvsffyvv/horarios.json",
+    "verified_on": "2026-10-02",
+    "unverified": [
+      "U11"
+    ],
+    "notes": [
+      "ERSE announces new time periods for BTN bi-hourly and tri-hourly supply, applied between 2027-07-01 and 2027-12-31. They are outside the catalogue period and not included."
+    ],
+    "page_url": "https://www.erse.pt/atividade/regulacao/tarifas-e-precos-eletricidade/#periodos-horarios",
+    "cycles": {
+      "daily": {
+        "winter": {
+          "weekday": {
+            "empty": [
+              [
+                "00:00",
+                "08:00"
+              ],
+              [
+                "22:00",
+                "24:00"
+              ]
+            ]
+          },
+          "saturday": {
+            "empty": [
+              [
+                "00:00",
+                "08:00"
+              ],
+              [
+                "22:00",
+                "24:00"
+              ]
+            ]
+          },
+          "sunday": {
+            "empty": [
+              [
+                "00:00",
+                "08:00"
+              ],
+              [
+                "22:00",
+                "24:00"
+              ]
+            ]
+          }
+        },
+        "summer": {
+          "weekday": {
+            "empty": [
+              [
+                "00:00",
+                "08:00"
+              ],
+              [
+                "22:00",
+                "24:00"
+              ]
+            ]
+          },
+          "saturday": {
+            "empty": [
+              [
+                "00:00",
+                "08:00"
+              ],
+              [
+                "22:00",
+                "24:00"
+              ]
+            ]
+          },
+          "sunday": {
+            "empty": [
+              [
+                "00:00",
+                "08:00"
+              ],
+              [
+                "22:00",
+                "24:00"
+              ]
+            ]
+          }
+        }
+      },
+      "weekly": {
+        "winter": {
+          "weekday": {
+            "empty": [
+              [
+                "00:00",
+                "07:00"
+              ]
+            ]
+          },
+          "saturday": {
+            "empty": [
+              [
+                "00:00",
+                "09:30"
+              ],
+              [
+                "13:00",
+                "18:30"
+              ],
+              [
+                "22:00",
+                "24:00"
+              ]
+            ]
+          },
+          "sunday": {
+            "empty": [
+              [
+                "00:00",
+                "24:00"
+              ]
+            ]
+          }
+        },
+        "summer": {
+          "weekday": {
+            "empty": [
+              [
+                "00:00",
+                "07:00"
+              ]
+            ]
+          },
+          "saturday": {
+            "empty": [
+              [
+                "00:00",
+                "09:00"
+              ],
+              [
+                "14:00",
+                "20:00"
+              ],
+              [
+                "22:00",
+                "24:00"
+              ]
+            ]
+          },
+          "sunday": {
+            "empty": [
+              [
+                "00:00",
+                "24:00"
+              ]
+            ]
+          }
+        }
+      }
+    }
+  },
+  "access_tariffs": [
+    {
+      "id": "tar-2024-01",
+      "valid_from": "2024-01-01",
+      "valid_to": "2024-05-31",
+      "source_url": "https://www.erse.pt/media/yntlpuwr/tarifas-se_2024.xlsx",
+      "verified_on": "2026-10-02",
+      "unverified": [],
+      "notes": [
+        "Sheet \"Tarifas Acesso\", tariff for BTN up to 20.7 kVA, in force from 2024-01-01."
+      ],
+      "page_url": "https://www.erse.pt/atividade/regulacao/tarifas-e-precos-eletricidade/",
+      "energy_eur_kwh": {
+        "simple": 0.0365,
+        "bi_hourly": {
+          "out_of_empty": 0.0502,
+          "empty": 0.0092
+        }
+      },
+      "power_eur_day": [
+        {
+          "kva": 1.15,
+          "eur_day": 0.0428
+        },
+        {
+          "kva": 2.3,
+          "eur_day": 0.0856
+        },
+        {
+          "kva": 3.45,
+          "eur_day": 0.1283
+        },
+        {
+          "kva": 4.6,
+          "eur_day": 0.1711
+        },
+        {
+          "kva": 5.75,
+          "eur_day": 0.2139
+        },
+        {
+          "kva": 6.9,
+          "eur_day": 0.2567
+        },
+        {
+          "kva": 10.35,
+          "eur_day": 0.385
+        },
+        {
+          "kva": 13.8,
+          "eur_day": 0.5134
+        },
+        {
+          "kva": 17.25,
+          "eur_day": 0.6417
+        },
+        {
+          "kva": 20.7,
+          "eur_day": 0.77
+        }
+      ]
+    },
+    {
+      "id": "tar-2024-06",
+      "valid_from": "2024-06-01",
+      "valid_to": "2024-12-31",
+      "source_url": "https://www.erse.pt/media/ywpbkl2y/s_tarifas_net.xlsx",
+      "verified_on": "2026-10-02",
+      "unverified": [],
+      "notes": [
+        "Exceptional mid-year tariff setting, in force from 2024-06-01 (ERSE \"Tarifas e Preços para a Energia Elétrica de junho a dezembro de 2024\")."
+      ],
+      "page_url": "https://www.erse.pt/atividade/regulacao/tarifas-e-precos-eletricidade/",
+      "energy_eur_kwh": {
+        "simple": 0.0625,
+        "bi_hourly": {
+          "out_of_empty": 0.086,
+          "empty": 0.0157
+        }
+      },
+      "power_eur_day": [
+        {
+          "kva": 1.15,
+          "eur_day": 0.0531
+        },
+        {
+          "kva": 2.3,
+          "eur_day": 0.1063
+        },
+        {
+          "kva": 3.45,
+          "eur_day": 0.1594
+        },
+        {
+          "kva": 4.6,
+          "eur_day": 0.2125
+        },
+        {
+          "kva": 5.75,
+          "eur_day": 0.2657
+        },
+        {
+          "kva": 6.9,
+          "eur_day": 0.3188
+        },
+        {
+          "kva": 10.35,
+          "eur_day": 0.4782
+        },
+        {
+          "kva": 13.8,
+          "eur_day": 0.6376
+        },
+        {
+          "kva": 17.25,
+          "eur_day": 0.797
+        },
+        {
+          "kva": 20.7,
+          "eur_day": 0.9563
+        }
+      ]
+    },
+    {
+      "id": "tar-2025",
+      "valid_from": "2025-01-01",
+      "valid_to": "2025-12-31",
+      "source_url": "https://www.erse.pt/media/ipboeq4k/s_tarifas_net.xlsx",
+      "verified_on": "2026-10-02",
+      "unverified": [],
+      "notes": [
+        "Sheet \"Tarifas Acesso\", in force from 2025-01-01. No mid-year access tariff change for 2025 is listed on the ERSE page."
+      ],
+      "page_url": "https://www.erse.pt/atividade/regulacao/tarifas-e-precos-eletricidade/",
+      "energy_eur_kwh": {
+        "simple": 0.06,
+        "bi_hourly": {
+          "out_of_empty": 0.083,
+          "empty": 0.0149
+        }
+      },
+      "power_eur_day": [
+        {
+          "kva": 1.15,
+          "eur_day": 0.0529
+        },
+        {
+          "kva": 2.3,
+          "eur_day": 0.1058
+        },
+        {
+          "kva": 3.45,
+          "eur_day": 0.1587
+        },
+        {
+          "kva": 4.6,
+          "eur_day": 0.2116
+        },
+        {
+          "kva": 5.75,
+          "eur_day": 0.2645
+        },
+        {
+          "kva": 6.9,
+          "eur_day": 0.3174
+        },
+        {
+          "kva": 10.35,
+          "eur_day": 0.4761
+        },
+        {
+          "kva": 13.8,
+          "eur_day": 0.6348
+        },
+        {
+          "kva": 17.25,
+          "eur_day": 0.7935
+        },
+        {
+          "kva": 20.7,
+          "eur_day": 0.9522
+        }
+      ]
+    },
+    {
+      "id": "tar-2026",
+      "valid_from": "2026-01-01",
+      "valid_to": "2026-12-31",
+      "source_url": "https://www.erse.pt/media/wfziq5t5/s_tarifas_net.xlsx",
+      "verified_on": "2026-10-02",
+      "unverified": [],
+      "notes": [
+        "Sheet \"Tarifas Acesso\", in force from 2026-01-01.",
+        "The ERSE update in force from 2026-10-01 (https://www.erse.pt/media/wbxljhas/s_tarifas_net_outubro-2026.xlsx) keeps these BTN access tariffs unchanged."
+      ],
+      "page_url": "https://www.erse.pt/atividade/regulacao/tarifas-e-precos-eletricidade/",
+      "energy_eur_kwh": {
+        "simple": 0.0607,
+        "bi_hourly": {
+          "out_of_empty": 0.0835,
+          "empty": 0.0158
+        }
+      },
+      "power_eur_day": [
+        {
+          "kva": 1.15,
+          "eur_day": 0.0573
+        },
+        {
+          "kva": 2.3,
+          "eur_day": 0.1145
+        },
+        {
+          "kva": 3.45,
+          "eur_day": 0.1718
+        },
+        {
+          "kva": 4.6,
+          "eur_day": 0.2291
+        },
+        {
+          "kva": 5.75,
+          "eur_day": 0.2864
+        },
+        {
+          "kva": 6.9,
+          "eur_day": 0.3436
+        },
+        {
+          "kva": 10.35,
+          "eur_day": 0.5154
+        },
+        {
+          "kva": 13.8,
+          "eur_day": 0.6872
+        },
+        {
+          "kva": 17.25,
+          "eur_day": 0.8591
+        },
+        {
+          "kva": 20.7,
+          "eur_day": 1.0309
+        }
+      ]
+    }
+  ],
+  "taxes": {
+    "vat": {
+      "source_url": "https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/codigos_tributarios/civa_rep/Pages/iva18.aspx",
+      "verified_on": "2026-10-02",
+      "unverified": [
+        "U7"
+      ],
+      "notes": [],
+      "standard_rate": 0.23,
+      "legal_reference": "Código do IVA, artigo 18.º, n.º 1 (6 % for Lista I, 13 % for Lista II, 23 % otherwise)",
+      "rules": [
+        {
+          "id": "vat-reduced-tar-power",
+          "description": "Reduced rate on the fixed component of the access tariffs (TAR power term) when contracted power is at most 3.45 kVA.",
+          "applies_to": "tar_power_term",
+          "rate": 0.06,
+          "max_contracted_kva": 3.45,
+          "kwh_per_30_days": null,
+          "kwh_per_30_days_large_family": null,
+          "valid_from": "2024-01-01",
+          "valid_to": null,
+          "legal_reference": "Código do IVA, Lista I, verba 2.33 (added by Decreto-Lei n.º 60/2019)",
+          "source_url": "https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/codigos_tributarios/civa_rep/Pages/c-iva-listas.aspx",
+          "verified_on": "2026-10-02",
+          "unverified": [
+            "U12"
+          ],
+          "notes": []
+        },
+        {
+          "id": "vat-reduced-energy-2025",
+          "description": "Reduced rate on consumed energy (fixed components excluded) for contracted power up to 6.9 kVA, on the part not exceeding 200 kWh per 30 days (300 kWh for large families of five or more people).",
+          "applies_to": "energy",
+          "rate": 0.06,
+          "max_contracted_kva": 6.9,
+          "kwh_per_30_days": 200,
+          "kwh_per_30_days_large_family": 300,
+          "valid_from": "2025-01-01",
+          "valid_to": null,
+          "legal_reference": "Código do IVA, Lista I, verba 2.38 (wording of Lei n.º 38/2024, in force from 2025-01-01)",
+          "source_url": "https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/codigos_tributarios/civa_rep/Pages/c-iva-listas.aspx",
+          "verified_on": "2026-10-02",
+          "unverified": [],
+          "notes": [
+            "The rules for multi-rate tariffs and for billing periods other than 30 days are set by a government order (portaria) that is not part of this catalogue. Pro rata by days is an assumption."
+          ]
+        }
+      ]
+    },
+    "fees": [
+      {
+        "id": "iec",
+        "name": "Imposto Especial de Consumo de eletricidade (IEC)",
+        "basis": "per_kwh",
+        "amount_eur": 0.001,
+        "vat_rate": 0.23,
+        "vat_source_url": "https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/codigos_tributarios/civa_rep/Pages/iva18.aspx",
+        "source_url": "https://www.coopernico.org/tarifarios",
+        "verified_on": "2026-10-02",
+        "unverified": [
+          "U8"
+        ],
+        "notes": []
+      },
+      {
+        "id": "dgeg",
+        "name": "Taxa de exploração DGEG",
+        "basis": "per_month",
+        "amount_eur": 0.07,
+        "vat_rate": 0.23,
+        "vat_source_url": "https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/codigos_tributarios/civa_rep/Pages/iva18.aspx",
+        "source_url": "https://www.coopernico.org/tarifarios",
+        "verified_on": "2026-10-02",
+        "unverified": [
+          "U8"
+        ],
+        "notes": []
+      },
+      {
+        "id": "audiovisual_contribution",
+        "name": "Contribuição para o audiovisual (CAV)",
+        "basis": "per_day",
+        "amount_eur": 0.09363,
+        "vat_rate": 0.06,
+        "vat_source_url": "https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/codigos_tributarios/civa_rep/Pages/c-iva-listas.aspx",
+        "source_url": "https://www.coopernico.org/tarifarios",
+        "verified_on": "2026-10-02",
+        "unverified": [
+          "U8"
+        ],
+        "notes": [
+          "VAT at 6 % per Código do IVA, Lista I, verba 2.2."
+        ]
+      }
+    ]
+  },
+  "offers": [
+    {
+      "id": "coopernico-unico-simple",
+      "supplier": "Coopérnico",
+      "name": "Coopérnico ÚNICO",
+      "pricing": "omie_indexed",
+      "tariff_type": "simple",
+      "cycle": null,
+      "erse_offer_code": "COOP_01",
+      "source_url": "https://www.coopernico.org/tarifarios",
+      "verified_on": "2026-10-02",
+      "unverified": [
+        "U1",
+        "U2",
+        "U3",
+        "U14"
+      ],
+      "notes": [
+        "Formula as written in the brief and in the worked example on the source page: Preço = ((OMIE + k) x (1 + FP)) + TAR, with k = 0,009 EUR/kWh and FP the ERSE loss profile, 15 % as an indicative average.",
+        "Power prices are the current published prices from the ERSE price list, applied unchanged to past periods."
+      ],
+      "offer_url": null,
+      "additional_sources": [
+        "https://www.coopernico.org/storage/files/20261001_FIN_BTN.pdf",
+        "https://simuladorprecos.erse.pt/Admin/csvs/20261002%20103041%20CSV.zip"
+      ],
+      "conditions": [
+        "Offer for Coopérnico cooperative members."
+      ],
+      "prices": [
+        {
+          "kva": 1.15,
+          "power_eur_day": 0.0706,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 2.3,
+          "power_eur_day": 0.1295,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 3.45,
+          "power_eur_day": 0.1885,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 4.6,
+          "power_eur_day": 0.2474,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 5.75,
+          "power_eur_day": 0.3064,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 6.9,
+          "power_eur_day": 0.3653,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 10.35,
+          "power_eur_day": 0.5387,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 13.8,
+          "power_eur_day": 0.7122,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 17.25,
+          "power_eur_day": 0.8858,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 20.7,
+          "power_eur_day": 1.0592,
+          "energy_eur_kwh": null
+        }
+      ],
+      "power_formula": null,
+      "formula": {
+        "type": "omie_indexed",
+        "omie_averaging": "market_period",
+        "k_eur_mwh": 9,
+        "loss_factor": {
+          "basis": "erse_loss_profile",
+          "value": 0.15,
+          "value_kind": "indicative_average",
+          "source_url": "https://www.coopernico.org/tarifarios"
+        },
+        "multiplier": 1,
+        "adder_eur_mwh": 0,
+        "adder_components": [],
+        "includes_tar": true,
+        "extra_fees": [
+          {
+            "id": "social_tariff_financing",
+            "label": "Financiamento da tarifa social de eletricidade",
+            "eur_kwh": 0.002067,
+            "source_url": "https://www.coopernico.org/storage/files/20261001_FIN_BTN.pdf"
+          }
+        ],
+        "unpriced_components": [
+          {
+            "id": "system_costs",
+            "label": "Custos de sistema (valor mensal variável, não publicado)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "edp-eletricidade-simple",
+      "supplier": "EDP Comercial",
+      "name": "Eletricidade",
+      "pricing": "fixed",
+      "tariff_type": "simple",
+      "cycle": null,
+      "erse_offer_code": "EDPC_178",
+      "source_url": "https://simuladorprecos.erse.pt/Admin/csvs/20261002%20103041%20CSV.zip",
+      "verified_on": "2026-10-02",
+      "unverified": [
+        "U9"
+      ],
+      "notes": [],
+      "offer_url": "https://www.edp.pt/particulares/energia/eletricidade/",
+      "additional_sources": [],
+      "conditions": [
+        "Standard EDP Comercial offer (payment by Multibanco or cash, paper or electronic invoice)."
+      ],
+      "prices": [
+        {
+          "kva": 1.15,
+          "power_eur_day": 0.1411,
+          "energy_eur_kwh": {
+            "simple": 0.1556
+          }
+        },
+        {
+          "kva": 2.3,
+          "power_eur_day": 0.211,
+          "energy_eur_kwh": {
+            "simple": 0.1556
+          }
+        },
+        {
+          "kva": 3.45,
+          "power_eur_day": 0.2891,
+          "energy_eur_kwh": {
+            "simple": 0.1671
+          }
+        },
+        {
+          "kva": 4.6,
+          "power_eur_day": 0.4347,
+          "energy_eur_kwh": {
+            "simple": 0.1671
+          }
+        },
+        {
+          "kva": 5.75,
+          "power_eur_day": 0.5203,
+          "energy_eur_kwh": {
+            "simple": 0.1671
+          }
+        },
+        {
+          "kva": 6.9,
+          "power_eur_day": 0.578,
+          "energy_eur_kwh": {
+            "simple": 0.1671
+          }
+        },
+        {
+          "kva": 10.35,
+          "power_eur_day": 0.8485,
+          "energy_eur_kwh": {
+            "simple": 0.1671
+          }
+        },
+        {
+          "kva": 13.8,
+          "power_eur_day": 1.0943,
+          "energy_eur_kwh": {
+            "simple": 0.1675
+          }
+        },
+        {
+          "kva": 17.25,
+          "power_eur_day": 1.3777,
+          "energy_eur_kwh": {
+            "simple": 0.1675
+          }
+        },
+        {
+          "kva": 20.7,
+          "power_eur_day": 1.7068,
+          "energy_eur_kwh": {
+            "simple": 0.1675
+          }
+        }
+      ],
+      "power_formula": null,
+      "formula": null
+    },
+    {
+      "id": "edp-indexada-horaria-dd-fe-bi-hourly",
+      "supplier": "EDP Comercial",
+      "name": "Eletricidade Indexada Horária DD + FE",
+      "pricing": "omie_indexed",
+      "tariff_type": "bi_hourly",
+      "cycle": "daily",
+      "erse_offer_code": null,
+      "source_url": "https://www.edp.pt/media/uknapr1m/fin-indexada.pdf",
+      "verified_on": "2026-10-02",
+      "unverified": [
+        "U4",
+        "U10"
+      ],
+      "notes": [
+        "Published formula: Preço = Σi [(POMIE i x (1 + Perdas i) x K1 + K2 + TAREnergia i) x Consumo i] + (K3 + TARPotência) x Nº de dias, with K1 = 1,08, K2 = 0,0185 EUR/kWh and K3 = 0,1171 EUR/dia.",
+        "Power prices below are K3 plus the 2026 TAR power term; power_formula lets past periods use the TAR in force on each day."
+      ],
+      "offer_url": "https://www.edp.pt/particulares/energia/gas-eletricidade-oferta-indexada/",
+      "additional_sources": [],
+      "conditions": [
+        "Direct debit and electronic invoice required.",
+        "Requires a smart meter integrated in the smart grid (quarter-hourly readings)."
+      ],
+      "prices": [
+        {
+          "kva": 1.15,
+          "power_eur_day": 0.1744,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 2.3,
+          "power_eur_day": 0.2316,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 3.45,
+          "power_eur_day": 0.2889,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 4.6,
+          "power_eur_day": 0.3462,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 5.75,
+          "power_eur_day": 0.4035,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 6.9,
+          "power_eur_day": 0.4607,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 10.35,
+          "power_eur_day": 0.6325,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 13.8,
+          "power_eur_day": 0.8043,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 17.25,
+          "power_eur_day": 0.9762,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 20.7,
+          "power_eur_day": 1.148,
+          "energy_eur_kwh": null
+        }
+      ],
+      "power_formula": {
+        "type": "tar_plus_margin",
+        "margin_eur_day": 0.1171
+      },
+      "formula": {
+        "type": "omie_indexed",
+        "omie_averaging": "market_period",
+        "k_eur_mwh": 0,
+        "loss_factor": {
+          "basis": "erse_loss_profile",
+          "value": 0.164,
+          "value_kind": "indicative_average",
+          "source_url": "https://www.edp.pt/media/uknapr1m/fin-indexada.pdf"
+        },
+        "multiplier": 1.08,
+        "adder_eur_mwh": 18.5,
+        "adder_components": [
+          {
+            "id": "k2",
+            "eur_mwh": 18.5
+          }
+        ],
+        "includes_tar": true,
+        "extra_fees": [],
+        "unpriced_components": []
+      }
+    },
+    {
+      "id": "edp-indexada-media-dd-fe-simple",
+      "supplier": "EDP Comercial",
+      "name": "Eletricidade Indexada média DD + FE",
+      "pricing": "omie_indexed",
+      "tariff_type": "simple",
+      "cycle": null,
+      "erse_offer_code": "EDPC_80",
+      "source_url": "https://www.edp.pt/media/uknapr1m/fin-indexada.pdf",
+      "verified_on": "2026-10-02",
+      "unverified": [
+        "U13"
+      ],
+      "notes": [
+        "Published formula: Preço = Σi [(POMIE i x (1 + Perdas ERSE i) x K1 + K2 + TAREnergia i) x Consumo i] + (K3 + TARPotência) x Nº de dias, with POMIE the average OMIE PT price for the tariff period and consumption period, Perdas = 16,4 %, K1 = 1,10, K2 = 0,0185 EUR/kWh and K3 = 0,1171 EUR/dia."
+      ],
+      "offer_url": "https://www.edp.pt/particulares/energia/gas-eletricidade-oferta-indexada/",
+      "additional_sources": [
+        "https://simuladorprecos.erse.pt/Admin/csvs/20261002%20103041%20CSV.zip"
+      ],
+      "conditions": [
+        "Direct debit and electronic invoice required."
+      ],
+      "prices": [
+        {
+          "kva": 1.15,
+          "power_eur_day": 0.1744,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 2.3,
+          "power_eur_day": 0.2316,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 3.45,
+          "power_eur_day": 0.2889,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 4.6,
+          "power_eur_day": 0.3462,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 5.75,
+          "power_eur_day": 0.4035,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 6.9,
+          "power_eur_day": 0.4607,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 10.35,
+          "power_eur_day": 0.6325,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 13.8,
+          "power_eur_day": 0.8043,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 17.25,
+          "power_eur_day": 0.9762,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 20.7,
+          "power_eur_day": 1.148,
+          "energy_eur_kwh": null
+        }
+      ],
+      "power_formula": {
+        "type": "tar_plus_margin",
+        "margin_eur_day": 0.1171
+      },
+      "formula": {
+        "type": "omie_indexed",
+        "omie_averaging": "billing_period_mean_by_tariff_period",
+        "k_eur_mwh": 0,
+        "loss_factor": {
+          "basis": "fixed",
+          "value": 0.164,
+          "value_kind": "published",
+          "source_url": "https://www.edp.pt/media/uknapr1m/fin-indexada.pdf"
+        },
+        "multiplier": 1.1,
+        "adder_eur_mwh": 18.5,
+        "adder_components": [
+          {
+            "id": "k2",
+            "eur_mwh": 18.5
+          }
+        ],
+        "includes_tar": true,
+        "extra_fees": [],
+        "unpriced_components": []
+      }
+    },
+    {
+      "id": "ezu-premium-bi-hourly",
+      "supplier": "EZU Energia",
+      "name": "Tarifa EZU Premium",
+      "pricing": "fixed",
+      "tariff_type": "bi_hourly",
+      "cycle": "daily",
+      "erse_offer_code": "EZUENERGIA_04",
+      "source_url": "https://simuladorprecos.erse.pt/Admin/csvs/20261002%20103041%20CSV.zip",
+      "verified_on": "2026-10-02",
+      "unverified": [
+        "U9",
+        "U10"
+      ],
+      "notes": [],
+      "offer_url": "https://ezu.pt/tarifas",
+      "additional_sources": [],
+      "conditions": [
+        "Payment by direct debit."
+      ],
+      "prices": [
+        {
+          "kva": 1.15,
+          "power_eur_day": 0.1737,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.1935,
+            "empty": 0.1258
+          }
+        },
+        {
+          "kva": 2.3,
+          "power_eur_day": 0.245,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.1935,
+            "empty": 0.1258
+          }
+        },
+        {
+          "kva": 3.45,
+          "power_eur_day": 0.2695,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.1935,
+            "empty": 0.1258
+          }
+        },
+        {
+          "kva": 4.6,
+          "power_eur_day": 0.3361,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.1935,
+            "empty": 0.1258
+          }
+        },
+        {
+          "kva": 5.75,
+          "power_eur_day": 0.4027,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.1935,
+            "empty": 0.1258
+          }
+        },
+        {
+          "kva": 6.9,
+          "power_eur_day": 0.4692,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.1935,
+            "empty": 0.1258
+          }
+        },
+        {
+          "kva": 10.35,
+          "power_eur_day": 0.6418,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.1935,
+            "empty": 0.1258
+          }
+        },
+        {
+          "kva": 13.8,
+          "power_eur_day": 0.8324,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.1935,
+            "empty": 0.1258
+          }
+        },
+        {
+          "kva": 17.25,
+          "power_eur_day": 1.0231,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.1935,
+            "empty": 0.1258
+          }
+        },
+        {
+          "kva": 20.7,
+          "power_eur_day": 1.2136,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.1935,
+            "empty": 0.1258
+          }
+        }
+      ],
+      "power_formula": null,
+      "formula": null
+    },
+    {
+      "id": "goldenergy-digital-dd-fe-simple",
+      "supplier": "Goldenergy",
+      "name": "Digital Monoelétrico com DD+FE",
+      "pricing": "fixed",
+      "tariff_type": "simple",
+      "cycle": null,
+      "erse_offer_code": "GOLD_86",
+      "source_url": "https://simuladorprecos.erse.pt/Admin/csvs/20261002%20103041%20CSV.zip",
+      "verified_on": "2026-10-02",
+      "unverified": [
+        "U9"
+      ],
+      "notes": [],
+      "offer_url": "https://goldenergy.pt/servicos/precos-de-referencia/",
+      "additional_sources": [],
+      "conditions": [
+        "New online contracts with direct debit and electronic invoice."
+      ],
+      "prices": [
+        {
+          "kva": 1.15,
+          "power_eur_day": 0.2243,
+          "energy_eur_kwh": {
+            "simple": 0.1694426
+          }
+        },
+        {
+          "kva": 2.3,
+          "power_eur_day": 0.2862,
+          "energy_eur_kwh": {
+            "simple": 0.1694426
+          }
+        },
+        {
+          "kva": 3.45,
+          "power_eur_day": 0.3564,
+          "energy_eur_kwh": {
+            "simple": 0.1694426
+          }
+        },
+        {
+          "kva": 4.6,
+          "power_eur_day": 0.5062,
+          "energy_eur_kwh": {
+            "simple": 0.1694426
+          }
+        },
+        {
+          "kva": 5.75,
+          "power_eur_day": 0.605,
+          "energy_eur_kwh": {
+            "simple": 0.1694426
+          }
+        },
+        {
+          "kva": 6.9,
+          "power_eur_day": 0.692,
+          "energy_eur_kwh": {
+            "simple": 0.1694426
+          }
+        },
+        {
+          "kva": 10.35,
+          "power_eur_day": 0.9785,
+          "energy_eur_kwh": {
+            "simple": 0.1694426
+          }
+        },
+        {
+          "kva": 13.8,
+          "power_eur_day": 1.3172,
+          "energy_eur_kwh": {
+            "simple": 0.1694426
+          }
+        },
+        {
+          "kva": 17.25,
+          "power_eur_day": 1.7067,
+          "energy_eur_kwh": {
+            "simple": 0.1694426
+          }
+        },
+        {
+          "kva": 20.7,
+          "power_eur_day": 2.1424,
+          "energy_eur_kwh": {
+            "simple": 0.1694426
+          }
+        }
+      ],
+      "power_formula": null,
+      "formula": null
+    },
+    {
+      "id": "goldenergy-index-04-25-simple",
+      "supplier": "Goldenergy",
+      "name": "Tarifa Index 04/25 Eletricidade",
+      "pricing": "omie_indexed",
+      "tariff_type": "simple",
+      "cycle": null,
+      "erse_offer_code": "GOLD_70",
+      "source_url": "https://goldenergy.pt/resources/data/website/documentos/ficha-normalizada-indexados.pdf",
+      "verified_on": "2026-10-02",
+      "unverified": [
+        "U5",
+        "U6",
+        "U14"
+      ],
+      "notes": [
+        "Published formula: CE = ((Pomie x (1 + Perdas) + QTarifa + CG) x Consumo) + (TEPAi x Consumo), with Pomie the average day-ahead price of the billing period, QTarifa = 0,02425 EUR/kWh and CG = 0,03 EUR/kWh.",
+        "Power prices are the current published prices from the ERSE price list, applied unchanged to past periods."
+      ],
+      "offer_url": null,
+      "additional_sources": [
+        "https://simuladorprecos.erse.pt/Admin/csvs/20261002%20103041%20CSV.zip"
+      ],
+      "conditions": [
+        "Simple tariff only, contracted power from 1.15 to 20.7 kVA."
+      ],
+      "prices": [
+        {
+          "kva": 1.15,
+          "power_eur_day": 0.1823,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 2.3,
+          "power_eur_day": 0.2395,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 3.45,
+          "power_eur_day": 0.2968,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 4.6,
+          "power_eur_day": 0.3541,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 5.75,
+          "power_eur_day": 0.4114,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 6.9,
+          "power_eur_day": 0.4686,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 10.35,
+          "power_eur_day": 0.6404,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 13.8,
+          "power_eur_day": 0.8122,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 17.25,
+          "power_eur_day": 0.9841,
+          "energy_eur_kwh": null
+        },
+        {
+          "kva": 20.7,
+          "power_eur_day": 1.1559,
+          "energy_eur_kwh": null
+        }
+      ],
+      "power_formula": null,
+      "formula": {
+        "type": "omie_indexed",
+        "omie_averaging": "billing_period_mean",
+        "k_eur_mwh": 0,
+        "loss_factor": {
+          "basis": "supplier_table",
+          "value": null,
+          "value_kind": "unpublished",
+          "source_url": "https://goldenergy.pt/resources/data/website/documentos/ficha-normalizada-indexados.pdf"
+        },
+        "multiplier": 1,
+        "adder_eur_mwh": 54.25,
+        "adder_components": [
+          {
+            "id": "qtarifa",
+            "eur_mwh": 24.25
+          },
+          {
+            "id": "cg",
+            "eur_mwh": 30
+          }
+        ],
+        "includes_tar": true,
+        "extra_fees": [
+          {
+            "id": "social_tariff_financing",
+            "label": "Financiamento da tarifa social de eletricidade (2026)",
+            "eur_kwh": 0.0020666,
+            "source_url": "https://goldenergy.pt/resources/data/website/documentos/ficha-normalizada-indexados.pdf"
+          }
+        ],
+        "unpriced_components": []
+      }
+    },
+    {
+      "id": "meo-energia-fixa-dd-fe-simple",
+      "supplier": "MEO Energia",
+      "name": "MEO Energia FIXA DD FE",
+      "pricing": "fixed",
+      "tariff_type": "simple",
+      "cycle": null,
+      "erse_offer_code": "MEOENERGIA_03",
+      "source_url": "https://simuladorprecos.erse.pt/Admin/csvs/20261002%20103041%20CSV.zip",
+      "verified_on": "2026-10-02",
+      "unverified": [
+        "U9"
+      ],
+      "notes": [],
+      "offer_url": "https://www.meoenergia.pt/eletricidade#tarifa-fixa",
+      "additional_sources": [],
+      "conditions": [
+        "Direct debit and electronic invoice required."
+      ],
+      "prices": [
+        {
+          "kva": 1.15,
+          "power_eur_day": 0.15,
+          "energy_eur_kwh": {
+            "simple": 0.1699
+          }
+        },
+        {
+          "kva": 2.3,
+          "power_eur_day": 0.2,
+          "energy_eur_kwh": {
+            "simple": 0.1699
+          }
+        },
+        {
+          "kva": 3.45,
+          "power_eur_day": 0.27,
+          "energy_eur_kwh": {
+            "simple": 0.1699
+          }
+        },
+        {
+          "kva": 4.6,
+          "power_eur_day": 0.38,
+          "energy_eur_kwh": {
+            "simple": 0.1699
+          }
+        },
+        {
+          "kva": 5.75,
+          "power_eur_day": 0.47,
+          "energy_eur_kwh": {
+            "simple": 0.1699
+          }
+        },
+        {
+          "kva": 6.9,
+          "power_eur_day": 0.55,
+          "energy_eur_kwh": {
+            "simple": 0.1699
+          }
+        },
+        {
+          "kva": 10.35,
+          "power_eur_day": 0.65,
+          "energy_eur_kwh": {
+            "simple": 0.1699
+          }
+        },
+        {
+          "kva": 13.8,
+          "power_eur_day": 0.8,
+          "energy_eur_kwh": {
+            "simple": 0.1699
+          }
+        },
+        {
+          "kva": 17.25,
+          "power_eur_day": 0.99,
+          "energy_eur_kwh": {
+            "simple": 0.1699
+          }
+        },
+        {
+          "kva": 20.7,
+          "power_eur_day": 1.15,
+          "energy_eur_kwh": {
+            "simple": 0.1699
+          }
+        }
+      ],
+      "power_formula": null,
+      "formula": null
+    },
+    {
+      "id": "rockwatt-pop-bi-hourly",
+      "supplier": "Luzboa (Rockwatt)",
+      "name": "ROCKWATT POP",
+      "pricing": "fixed",
+      "tariff_type": "bi_hourly",
+      "cycle": "daily",
+      "erse_offer_code": "LUZBOA_02",
+      "source_url": "https://simuladorprecos.erse.pt/Admin/csvs/20261002%20103041%20CSV.zip",
+      "verified_on": "2026-10-02",
+      "unverified": [
+        "U9",
+        "U10"
+      ],
+      "notes": [],
+      "offer_url": "https://rockwatt.pt/planos-de-energia/",
+      "additional_sources": [],
+      "conditions": [
+        "Payment by direct debit or Multibanco."
+      ],
+      "prices": [
+        {
+          "kva": 1.15,
+          "power_eur_day": 0.1573,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.189766,
+            "empty": 0.117266
+          }
+        },
+        {
+          "kva": 2.3,
+          "power_eur_day": 0.2145,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.189766,
+            "empty": 0.117266
+          }
+        },
+        {
+          "kva": 3.45,
+          "power_eur_day": 0.2718,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.189766,
+            "empty": 0.117266
+          }
+        },
+        {
+          "kva": 4.6,
+          "power_eur_day": 0.3491,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.189766,
+            "empty": 0.117266
+          }
+        },
+        {
+          "kva": 5.75,
+          "power_eur_day": 0.4064,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.189766,
+            "empty": 0.117266
+          }
+        },
+        {
+          "kva": 6.9,
+          "power_eur_day": 0.4636,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.189766,
+            "empty": 0.117266
+          }
+        },
+        {
+          "kva": 10.35,
+          "power_eur_day": 0.6654,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.189766,
+            "empty": 0.117266
+          }
+        },
+        {
+          "kva": 13.8,
+          "power_eur_day": 0.8372,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.189766,
+            "empty": 0.117266
+          }
+        },
+        {
+          "kva": 17.25,
+          "power_eur_day": 1.0091,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.189766,
+            "empty": 0.117266
+          }
+        },
+        {
+          "kva": 20.7,
+          "power_eur_day": 1.2309,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.189766,
+            "empty": 0.117266
+          }
+        }
+      ],
+      "power_formula": null,
+      "formula": null
+    },
+    {
+      "id": "su-eletricidade-regulated-bi-hourly",
+      "supplier": "SU Eletricidade",
+      "name": "Tarifa transitória regulada (bi-horária)",
+      "pricing": "fixed",
+      "tariff_type": "bi_hourly",
+      "cycle": "weekly",
+      "erse_offer_code": "TUR",
+      "source_url": "https://www.erse.pt/media/wbxljhas/s_tarifas_net_outubro-2026.xlsx",
+      "verified_on": "2026-10-02",
+      "unverified": [
+        "U10"
+      ],
+      "notes": [],
+      "offer_url": "https://sueletricidade.pt/pt-pt/complex-pages/4151/tarifas-baixa-tensao-normal",
+      "additional_sources": [
+        "https://simuladorprecos.erse.pt/Admin/csvs/20261002%20103041%20CSV.zip"
+      ],
+      "conditions": [
+        "Regulated transitional tariff set by ERSE, prices in force from 2026-10-01 (sheet \"TVCFtrans_CUR_Continente_BT\")."
+      ],
+      "prices": [
+        {
+          "kva": 1.15,
+          "power_eur_day": 0.0893,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.2045,
+            "empty": 0.1143
+          }
+        },
+        {
+          "kva": 2.3,
+          "power_eur_day": 0.15,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.2045,
+            "empty": 0.1143
+          }
+        },
+        {
+          "kva": 3.45,
+          "power_eur_day": 0.1917,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.2045,
+            "empty": 0.1143
+          }
+        },
+        {
+          "kva": 4.6,
+          "power_eur_day": 0.2499,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.2045,
+            "empty": 0.1143
+          }
+        },
+        {
+          "kva": 5.75,
+          "power_eur_day": 0.3079,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.2045,
+            "empty": 0.1143
+          }
+        },
+        {
+          "kva": 6.9,
+          "power_eur_day": 0.3659,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.2045,
+            "empty": 0.1143
+          }
+        },
+        {
+          "kva": 10.35,
+          "power_eur_day": 0.5397,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.2045,
+            "empty": 0.1143
+          }
+        },
+        {
+          "kva": 13.8,
+          "power_eur_day": 0.7136,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.2045,
+            "empty": 0.1143
+          }
+        },
+        {
+          "kva": 17.25,
+          "power_eur_day": 0.8875,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.2045,
+            "empty": 0.1143
+          }
+        },
+        {
+          "kva": 20.7,
+          "power_eur_day": 1.0614,
+          "energy_eur_kwh": {
+            "out_of_empty": 0.2045,
+            "empty": 0.1143
+          }
+        }
+      ],
+      "power_formula": null,
+      "formula": null
+    }
+  ],
+  "unverified": [
+    {
+      "id": "U1",
+      "title": "Coopérnico formula: two published forms disagree"
+    },
+    {
+      "id": "U2",
+      "title": "Coopérnico system costs are not published as a number"
+    },
+    {
+      "id": "U3",
+      "title": "Coopérnico loss factor and power price over time"
+    },
+    {
+      "id": "U4",
+      "title": "EDP hourly indexed offer: quarter-hourly loss profile not in the catalogue"
+    },
+    {
+      "id": "U5",
+      "title": "Goldenergy indexed offer: loss coefficients not published"
+    },
+    {
+      "id": "U6",
+      "title": "Goldenergy indexed offer: power price basis and billing period"
+    },
+    {
+      "id": "U7",
+      "title": "VAT reduced rate on energy before 2025"
+    },
+    {
+      "id": "U8",
+      "title": "IEC, DGEG fee and audiovisual contribution amounts"
+    },
+    {
+      "id": "U9",
+      "title": "Fixed-offer prices verified on ERSE open data, not on supplier pages"
+    },
+    {
+      "id": "U10",
+      "title": "Bi-hourly cycle offered by each supplier"
+    },
+    {
+      "id": "U11",
+      "title": "ERSE cycle hours before 2026"
+    },
+    {
+      "id": "U12",
+      "title": "VAT on the power term up to 3.45 kVA"
+    },
+    {
+      "id": "U13",
+      "title": "EDP average-price indexed offer: averaging method"
+    },
+    {
+      "id": "U14",
+      "title": "Social tariff financing in past periods"
+    }
+  ]
+}

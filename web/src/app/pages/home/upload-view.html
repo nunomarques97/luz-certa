@@ -1,0 +1,87 @@
+<div class="upload-page">
+  <section aria-labelledby="question">
+    <h1 class="question" id="question">Quanto teria pago com outra tarifa de eletricidade?</h1>
+    <p class="lead">
+      Carregue o ficheiro de consumos de 15 em 15 minutos da E-Redes. Mostramos quanto teria pago com
+      cada oferta da lista, fixas e indexadas ao OMIE, comparado com a sua tarifa atual, no seu
+      consumo real.
+    </p>
+
+    <div class="upload-block">
+      @if (uploadError(); as error) {
+        <app-error-banner
+          [failure]="error.failure"
+          (retry)="retry()"
+          (chooseFile)="fileInput.click()"
+        />
+      }
+      <div
+        class="upload-zone"
+        [class.is-dragover]="dragOver()"
+        (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave($event)"
+        (drop)="onDrop($event)"
+        data-testid="upload-zone"
+      >
+        <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            d="M11 4h13l8 8v24H11zM24 4v8h8M21 30V18m-5 5 5-5 5 5"
+          />
+        </svg>
+        <strong class="drag-text">Arraste o ficheiro para aqui</strong>
+        <span class="hint drag-text">ou</span>
+        <input
+          class="visually-hidden"
+          type="file"
+          id="file"
+          #fileInput
+          accept=".xlsx"
+          aria-describedby="file-hint"
+          (change)="onPick($event)"
+        />
+        <label class="button" for="file">Escolher ficheiro</label>
+        <span class="hint" id="file-hint">Ficheiro .xlsx exportado pela E-Redes, até 25 MB</span>
+        @if (store.reading()) {
+          <span class="hint">A abrir o ficheiro.</span>
+        }
+      </div>
+      <p class="privacy">
+        <svg width="20" height="20" viewBox="0 0 16 16" aria-hidden="true">
+          <path fill="currentColor" d="M4 7V5a4 4 0 0 1 8 0v2h1v8H3V7h1Zm2 0h4V5a2 2 0 1 0-4 0v2Z" />
+        </svg>
+        <span><strong>{{ privacyTitle }}</strong>{{ privacyDetail }}</span>
+      </p>
+    </div>
+  </section>
+
+  <aside class="guide" aria-labelledby="guide-title">
+    <h2 id="guide-title">Como obter o ficheiro</h2>
+    <ol>
+      @for (step of steps; track $index) {
+        <li><span>{{ step }}</span></li>
+      }
+    </ol>
+    <p class="small">
+      Os valores do ficheiro são potência média em kW em cada quarto de hora. A energia de cada
+      quarto de hora é esse valor a dividir por 4.
+    </p>
+  </aside>
+</div>
+
+<section class="outcome" aria-label="O que vai ver">
+  <div>
+    <h2>Quanto teria pago</h2>
+    <p>O custo de cada tarifa no mesmo período do ficheiro, com IVA e taxas.</p>
+  </div>
+  <div>
+    <h2>A diferença para a sua</h2>
+    <p>Quanto pouparia ou pagaria a mais em relação à tarifa que tem hoje.</p>
+  </div>
+  <div>
+    <h2>Tudo à vista</h2>
+    <p>Mês a mês, com cada pressuposto e a fonte de cada preço.</p>
+  </div>
+</section>

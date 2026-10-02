@@ -1,0 +1,30 @@
+# ERSE time-of-use cycles for BTN bi-hourly supply in Portugal continental.
+# Times are Portugal legal time (wall clock). "winter" is the legal winter time (WET) and
+# "summer" is the legal summer time (WEST); the season switches with the clock change.
+# Bi-hourly "empty" (vazio) = ERSE super vazio + vazio normal; every other quarter-hour is
+# "out_of_empty" (fora de vazio) = ERSE cheias + ponta. Intervals are [start, end) in HH:MM.
+source_url: https://www.erse.pt/media/rvsffyvv/horarios.json
+page_url: https://www.erse.pt/atividade/regulacao/tarifas-e-precos-eletricidade/#periodos-horarios
+verified_on: "2026-10-02"
+unverified: [U11]
+notes:
+  - ERSE announces new time periods for BTN bi-hourly and tri-hourly supply, applied between 2027-07-01 and 2027-12-31. They are outside the catalogue period and not included.
+cycles:
+  daily:
+    winter:
+      weekday: { empty: [["00:00", "08:00"], ["22:00", "24:00"]] }
+      saturday: { empty: [["00:00", "08:00"], ["22:00", "24:00"]] }
+      sunday: { empty: [["00:00", "08:00"], ["22:00", "24:00"]] }
+    summer:
+      weekday: { empty: [["00:00", "08:00"], ["22:00", "24:00"]] }
+      saturday: { empty: [["00:00", "08:00"], ["22:00", "24:00"]] }
+      sunday: { empty: [["00:00", "08:00"], ["22:00", "24:00"]] }
+  weekly:
+    winter:
+      weekday: { empty: [["00:00", "07:00"]] }
+      saturday: { empty: [["00:00", "09:30"], ["13:00", "18:30"], ["22:00", "24:00"]] }
+      sunday: { empty: [["00:00", "24:00"]] }
+    summer:
+      weekday: { empty: [["00:00", "07:00"]] }
+      saturday: { empty: [["00:00", "09:00"], ["14:00", "20:00"], ["22:00", "24:00"]] }
+      sunday: { empty: [["00:00", "24:00"]] }

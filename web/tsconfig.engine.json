@@ -1,0 +1,11 @@
+/* Type-checks the calculation engine without DOM types, proving it can run inside a Web Worker. */
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "lib": ["ES2022", "WebWorker"],
+    "types": []
+  },
+  "include": ["src/app/engine/**/*.ts"],
+  "exclude": ["src/app/engine/**/*.spec.ts"]
+}

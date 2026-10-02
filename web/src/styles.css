@@ -1,0 +1,3 @@
+/* Global styles: the design variables and shared components, then the screen layouts. */
+@import './theme.css';
+@import './screens.css';

@@ -1,0 +1,83 @@
+<section class="section" aria-labelledby="month-title" id="mes-a-mes">
+  <div class="section-head">
+    <h2 id="month-title">Mês a mês</h2>
+    @if (offers().length > 0) {
+      <p class="select-row">
+        <label for="compare">Comparar a sua tarifa com</label>
+        <select id="compare" (change)="select($event)">
+          @for (offer of offers(); track offer.id) {
+            <option [value]="offer.id" [selected]="offer.id === compareId()">{{ name(offer) }}</option>
+          }
+        </select>
+      </p>
+    }
+  </div>
+  @if (compared(); as offer) {
+    <div class="monthly">
+      <div>
+        <p class="legend">
+          <span><i style="background: var(--ink)"></i>A sua tarifa atual</span>
+          <span><i [style.background]="offerColour()"></i>{{ comparedName() }}</span>
+        </p>
+        <div #chartBox>
+          <svg
+            class="chart"
+            [attr.viewBox]="'0 0 ' + chart().width + ' ' + chart().height"
+            [attr.width]="chart().width"
+            [attr.height]="chart().height"
+            role="img"
+            [attr.aria-label]="'Custo mensal em euros: a sua tarifa atual e ' + comparedName() + '. Os valores estão na tabela.'"
+          >
+            @for (line of chart().grid; track $index) {
+              <line x1="34" [attr.x2]="chart().width" [attr.y1]="line.y" [attr.y2]="line.y" stroke="var(--line)" />
+              <text x="28" [attr.y]="line.y + 4" text-anchor="end">{{ line.label }}</text>
+            }
+            @for (bar of chart().bars; track bar.key) {
+              <rect [attr.x]="bar.currentX" [attr.y]="bar.currentY" [attr.width]="chart().barWidth" [attr.height]="bar.currentH" fill="var(--ink)" />
+              <rect [attr.x]="bar.offerX" [attr.y]="bar.offerY" [attr.width]="chart().barWidth" [attr.height]="bar.offerH" [attr.fill]="offerColour()" />
+              @if (bar.label) {
+                <text [attr.x]="bar.labelX" [attr.y]="chart().labelY" text-anchor="middle">{{ bar.label }}</text>
+              }
+            }
+          </svg>
+        </div>
+      </div>
+      <div class="table-box">
+        <table data-testid="monthly-table">
+          <caption class="visually-hidden">Custo por mês: a sua tarifa atual e {{ comparedName() }}</caption>
+          <thead>
+            <tr>
+              <th scope="col">Mês</th>
+              <th scope="col" class="col-kwh">kWh</th>
+              <th scope="col">Atual</th>
+              <th scope="col">{{ comparedShort() }}</th>
+              <th scope="col">Diferença</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of rows(); track row.month) {
+              <tr>
+                <th scope="row">{{ monthLong(row.month, multiYear() && ($first || row.month.endsWith('-01'))) }}</th>
+                <td class="col-kwh">{{ integer(row.kwh) }}</td>
+                <td>{{ eur(row.current) }}</td>
+                <td>{{ eur(row.offer) }}</td>
+                <td [class]="row.delta">{{ signedEur(row.difference) }}</td>
+              </tr>
+            }
+          </tbody>
+          <tfoot>
+            <tr>
+              <th scope="row">Total</th>
+              <td class="col-kwh">{{ integer(totalKwh()) }}</td>
+              <td>{{ eur(current().total) }}</td>
+              <td>{{ eur(offer.total) }}</td>
+              <td [class]="totalDifference() < 0 ? 'cheaper' : totalDifference() > 0 ? 'dearer' : ''">
+                {{ signedEur(totalDifference()) }}
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  }
+</section>
